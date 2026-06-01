@@ -34,15 +34,13 @@ const ogUrl = Astro.site ? new URL(withBase(ogImage), Astro.site).href : withBas
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogUrl} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" as="font" type="font/woff2" href={withBase('fonts/inter-variable.woff2')} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={withBase('fonts/jetbrains-mono-variable.woff2')} crossorigin />
   </head>
   <body>
     <Topbar activeRoute={activeRoute} />
-    <slot />
+    <main>
+      <slot />
+    </main>
   </body>
 </html>

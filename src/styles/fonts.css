@@ -1,0 +1,17 @@
+/* Self-hosted variable fonts (latin subset) — replaces the render-blocking Google Fonts <link>.
+   Files live in public/fonts/ and are preloaded in BaseLayout.astro. Upright only (the design
+   uses faux-italic, matching the prior Google Fonts setup which never requested an italic axis). */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-variable.woff2') format('woff2');
+}

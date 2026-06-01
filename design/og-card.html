@@ -1,0 +1,103 @@
+<!doctype html>
+<!-- Source for public/og-default.png (1200x630 social card). Regenerate:
+     chrome --headless=new --hide-scrollbars --force-color-profile=srgb \
+       --screenshot=public/og-default.png --window-size=1200,630 design/og-card.html
+     Not part of the Astro build (lives outside src/ and public/). -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #07090f; --bg-2: #0c0f17; --panel-2: #161b28;
+      --border: #202637; --border-2: #2a3147;
+      --text: #e8eaef; --muted: #8089a0; --dim: #5a6178;
+      --purple: #9d7cff; --purple-2: #c7b3ff; --cyan: #4ddbe6; --green: #5ee892;
+      --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--bg); }
+    .card {
+      position: relative; width: 1200px; height: 630px; overflow: hidden;
+      color: var(--text); font-family: 'Inter', system-ui, sans-serif;
+      background:
+        radial-gradient(1200px 720px at 80% -12%, rgba(157, 124, 255, 0.18), transparent 58%),
+        radial-gradient(900px 620px at -5% 118%, rgba(77, 219, 230, 0.10), transparent 55%),
+        linear-gradient(180deg, #07090f, #0c0f17);
+    }
+    .grid {
+      position: absolute; inset: 0; opacity: 0.5;
+      background-image:
+        linear-gradient(rgba(42, 49, 71, 0.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42, 49, 71, 0.35) 1px, transparent 1px);
+      background-size: 48px 48px;
+      -webkit-mask-image: radial-gradient(900px 620px at 32% 42%, #000, transparent 82%);
+      mask-image: radial-gradient(900px 620px at 32% 42%, #000, transparent 82%);
+    }
+    .frame { position: absolute; inset: 28px; border: 1px solid var(--border-2); border-radius: 18px; }
+    .pad {
+      position: relative; height: 100%; padding: 72px 78px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .top {
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--mono); font-size: 16px; letter-spacing: 0.14em; color: var(--dim);
+    }
+    .live { display: flex; align-items: center; gap: 9px; color: var(--green); }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+    h1 { font-size: 76px; line-height: 1.03; font-weight: 800; letter-spacing: -0.022em; max-width: 15ch; }
+    .grad {
+      background: linear-gradient(92deg, var(--purple-2), var(--purple), var(--cyan));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .sub {
+      margin-top: 24px; font-family: var(--mono); font-size: 19px; line-height: 1.5;
+      color: var(--muted); max-width: 60ch;
+    }
+    .sub em { color: var(--purple-2); font-style: normal; }
+    .bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+    .nameplate { font-family: var(--mono); font-size: 27px; letter-spacing: 0.14em; font-weight: 600; margin-bottom: 16px; }
+    .nameplate span { color: var(--purple); font-weight: 400; }
+    .chips { display: flex; gap: 12px; }
+    .chip {
+      font-family: var(--mono); font-size: 15px; letter-spacing: 0.05em; color: var(--text);
+      background: rgba(22, 27, 40, 0.7); border: 1px solid var(--border-2); border-radius: 8px; padding: 9px 14px;
+    }
+    .chip b { color: var(--cyan); font-weight: 600; }
+    .repo { font-family: var(--mono); font-size: 16px; letter-spacing: 0.06em; color: var(--dim); text-align: right; }
+    .repo span { color: var(--purple-2); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="grid"></div>
+    <div class="frame"></div>
+    <div class="pad">
+      <div class="top">
+        <span>// CALLSIGN · AQUINAS · CLEARANCE OMEGA</span>
+        <span class="live"><span class="dot"></span>SYSTEMS NOMINAL</span>
+      </div>
+      <div>
+        <h1>I build <span class="grad">production multi-agent</span> systems</h1>
+        <div class="sub">A 5-agent <em>Claude</em> council with admin elevation, cron, and a vault write-guard &mdash; shipped its open-source core as <em>Domo</em> (MIT).</div>
+      </div>
+      <div class="bottom">
+        <div>
+          <div class="nameplate">DYLAN&nbsp;PALUMBO <span>· SENIOR IC · AI INFRA</span></div>
+          <div class="chips">
+            <span class="chip"><b>10+</b> YRS</span>
+            <span class="chip">PYTHON / SYSTEMS</span>
+            <span class="chip">GEORGETOWN, TX &rarr; AZ</span>
+          </div>
+        </div>
+        <div class="repo">github.com/<span>Aquinas-Protocol</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

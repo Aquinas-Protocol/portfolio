@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // Base stays '/'. Swap SITE to the real workers.dev subdomain or a custom domain at deploy time
 // (only this constant changes — every internal URL routes through src/lib/url.ts `withBase`).
-const SITE = 'https://portfolio.workers.dev'; // TODO: set to real deploy URL
+const SITE = 'https://portfolio.machina-infastructure.workers.dev'; // live workers.dev deploy; bump to custom domain once attached
 
 // Pure-static output. The site deploys as Cloudflare Workers Static Assets; the one dynamic route
 // (/api/telemetry.json) is served by a hand-written Worker entry (worker/index.ts), NOT an Astro

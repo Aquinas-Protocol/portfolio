@@ -1,5 +1,7 @@
 # build output
 dist/
+# local lighthouse audit output (not committed)
+.lighthouse/
 # generated types
 .astro/
 

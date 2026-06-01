@@ -9,6 +9,18 @@ A recruiter-facing "Live Telemetry" Mission Control portfolio. **Built, deployed
 
 Spec lineage: `second-brain/portfolio-prd.md` (the PRD) + `second-brain/portfolio-reference.html` (the pixel ground-truth mock). Implementation plan: `~/.claude/plans/c-users-artemis-documents-second-brain-fancy-pixel.md`.
 
+## 2026-06-01 — session update (supersedes the older "Open / remaining work" items below)
+
+Shipped the remaining polish to all-green:
+
+- **OG image:** `public/og-default.png` (1200×630) authored; source kept at `design/og-card.html` (NOT part of the Astro build — it lives outside `src/`/`public/`). Regenerate: `chrome --headless=new --window-size=1200,630 --screenshot=public/og-default.png design/og-card.html`.
+- **`site` set to the live URL** (`https://portfolio.machina-infastructure.workers.dev`) — fixes the `canonical` + `og:image` that were pointing at the **unowned** placeholder `portfolio.workers.dev`. **Custom domain deferred** (owner staying on workers.dev for now); when a domain is picked, bump `site` + attach in the dashboard (Worker → Settings → Domains & Routes).
+- **Accessibility 92 → 100:** added the `<main>` landmark (`BaseLayout.astro`), fixed homepage heading order (`.sectHead` divs → `<h2>`, "RECENT ACTIVITY" `<h4>` → `<h3>` + its CSS selector), and lightened the `.pCard .mh` card-header labels (`--dim` → `--muted`) to clear WCAG color-contrast. **NOTE:** the same `--dim`-at-9px pattern still exists on other routes (e.g. `.sysCard .telBox .tHead`); only `/` was audited, so a full-site a11y sweep is a future option.
+- **Fonts self-hosted:** Inter + JetBrains Mono **variable** woff2 (latin) in `public/fonts/`, declared in `src/styles/fonts.css`, **preloaded** in `BaseLayout`; removed the render-blocking Google Fonts `<link>` (+ its preconnects) that capped mobile perf. Upright-only (matches the prior setup, which never requested an italic axis — italics are faux). Source: fontsource via jsDelivr (`cdn.jsdelivr.net/fontsource/fonts/{inter,jetbrains-mono}:vf@latest/latin-wght-normal.woff2`).
+- **"Left button tree" — DROPPED:** not in `portfolio-reference.html`; owner confirmed out of scope.
+
+**Lighthouse — live URL, pre-fix (2026-06-01):** desktop `98 / 92 / 100 / 100` (perf/a11y/bp/seo), mobile `88 / 92 / 100 / 100`. **Local preview, post-fix:** `100 / 100 / 100 / 100` (a11y 100 is deterministic; mobile perf on localhost is optimistic). Post-deploy live re-run confirms prod mobile perf ≥90.
+
 ## Stack (as built — differs from the PRD on purpose)
 
 - **Astro 6** (`output: 'static'`) + **Tailwind 4** (`@tailwindcss/vite`) + **React 19 islands** (`@astrojs/react`).
