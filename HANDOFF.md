@@ -19,7 +19,7 @@ Shipped the remaining polish to all-green:
 - **Fonts self-hosted:** Inter + JetBrains Mono **variable** woff2 (latin) in `public/fonts/`, declared in `src/styles/fonts.css`, **preloaded** in `BaseLayout`; removed the render-blocking Google Fonts `<link>` (+ its preconnects) that capped mobile perf. Upright-only (matches the prior setup, which never requested an italic axis — italics are faux). Source: fontsource via jsDelivr (`cdn.jsdelivr.net/fontsource/fonts/{inter,jetbrains-mono}:vf@latest/latin-wght-normal.woff2`).
 - **"Left button tree" — DROPPED:** not in `portfolio-reference.html`; owner confirmed out of scope.
 
-**Lighthouse — live URL, pre-fix (2026-06-01):** desktop `98 / 92 / 100 / 100` (perf/a11y/bp/seo), mobile `88 / 92 / 100 / 100`. **Local preview, post-fix:** `100 / 100 / 100 / 100` (a11y 100 is deterministic; mobile perf on localhost is optimistic). Post-deploy live re-run confirms prod mobile perf ≥90.
+**Lighthouse — live URL (2026-06-01):** pre-fix desktop `98 / 92 / 100 / 100` (perf/a11y/bp/seo), mobile `88 / 92 / 100 / 100`. **Post-fix (deployed, commit `d20e7fa`): `100 / 100 / 100 / 100` on BOTH desktop and mobile** — every PRD §10 target met/exceeded. Mobile: FCP 1.0s, LCP 1.4s, TBT 0, CLS 0; the render-block was cleared by self-hosting the fonts.
 
 ## Stack (as built — differs from the PRD on purpose)
 
