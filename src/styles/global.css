@@ -166,8 +166,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .gauges { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; align-content: center; }
 .gauges .g { display: flex; align-items: center; gap: 12px; padding: 4px 2px; }
-.gauges .ring { width: 42px; height: 42px; flex-shrink: 0; }
-.gauges .ring svg { transform: rotate(-90deg); }
+.gauges .gaugeRing { width: 42px; height: 42px; flex-shrink: 0; }
+.gauges .gaugeRing svg { transform: rotate(-90deg); }
 .gauges .gtext .k { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: .14em; }
 .gauges .gtext .v { font-size: 16px; font-weight: 600; }
 
