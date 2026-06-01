@@ -165,7 +165,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .pCard .mh { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 9px; letter-spacing: .16em; color: var(--dim); text-transform: uppercase; }
 
 .gauges { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; align-content: center; }
-.gauges .g { display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+.gauges .g { display: flex; align-items: center; gap: 12px; padding: 4px 2px; }
 .gauges .ring { width: 42px; height: 42px; flex-shrink: 0; }
 .gauges .ring svg { transform: rotate(-90deg); }
 .gauges .gtext .k { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: .14em; }
