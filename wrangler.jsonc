@@ -1,0 +1,17 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "portfolio",
+	"main": "worker/index.ts",
+	"compatibility_date": "2026-06-01",
+	// global_fetch_strictly_public: the Worker's fetch() can reach only the public internet
+	// (no internal/private addresses) — a free reinforcement of the §8 boundary.
+	"compatibility_flags": ["global_fetch_strictly_public"],
+	"assets": {
+		// Astro's static output. Matching files are served directly (free, no Worker invocation);
+		// only unmatched paths (i.e. /api/telemetry.json) reach worker/index.ts.
+		"directory": "./dist",
+		"binding": "ASSETS",
+		"not_found_handling": "404-page"
+	},
+	"observability": { "enabled": true }
+}

@@ -1,0 +1,5 @@
+# Local-only secret for the telemetry Worker (optional).
+# Copy this file to `.dev.vars` (gitignored) and fill in a fine-grained, PUBLIC-read-only GitHub PAT.
+# Without it the Worker calls the GitHub API unauthenticated (60 req/hr, fine behind the 5-min cache).
+# In production, set this as a Cloudflare Worker secret instead (dashboard → Settings → Variables/Secrets).
+GITHUB_TOKEN=

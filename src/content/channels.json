@@ -1,0 +1,38 @@
+[
+  {
+    "icon": "@", "iconClass": "", "name": "Email", "handle": "palumbo.d555@gmail.com",
+    "best": "Best for <b>opportunities, intros, anything formal</b>. Resume + cover go here. Acknowledged within 24 hours.",
+    "badge": "FASTEST", "badgeClass": "live", "rt": "RT · &lt; 24h", "action": "SEND →",
+    "href": "mailto:palumbo.d555@gmail.com", "live": true
+  },
+  {
+    "icon": "in", "iconClass": "cy", "name": "LinkedIn", "handle": "linkedin.com/in/dylan-palumbo",
+    "best": "Best for <b>recruiter outreach, network intros, role inquiries</b>.",
+    "badge": "PROFESSIONAL", "badgeClass": "cy", "rt": "RT · &lt; 48h", "action": "CONNECT →",
+    "href": "https://linkedin.com/in/dylan-palumbo", "live": true
+  },
+  {
+    "icon": "{ }", "iconClass": "gn", "name": "GitHub", "handle": "github.com/Aquinas-Protocol",
+    "best": "Best for <b>looking at the work itself</b>. Domo is OSS.",
+    "badge": "PUBLIC WORK", "badgeClass": "pur", "rt": "REPOS · 7 PUBLIC", "action": "VIEW →",
+    "href": "https://github.com/Aquinas-Protocol", "live": true
+  },
+  {
+    "icon": "▦", "iconClass": "am", "name": "Calendar Booking", "handle": "cal.com/dylan-palumbo",
+    "best": "Best for <b>30-min intro calls, technical deep-dives</b>. Self-serve booking.",
+    "badge": "SCHEDULED", "badgeClass": "am", "rt": "SLOTS · 3 / WK", "action": "EXAMPLE",
+    "href": null, "live": false
+  },
+  {
+    "icon": "⌘", "iconClass": "pk", "name": "Discord", "handle": "@aquinas · DMs open",
+    "best": "Best for <b>technical chat, agent infra talk, casual back-and-forth</b>.",
+    "badge": "CASUAL", "badgeClass": "pur", "rt": "RT · 1-3d", "action": "EXAMPLE",
+    "href": null, "live": false
+  },
+  {
+    "icon": "↧", "iconClass": "cy", "name": "Resume · PDF", "handle": "/resume.pdf · 2 pages",
+    "best": "Best for <b>recruiters who just need the document</b>. Master + tailored on request.",
+    "badge": "DOWNLOAD", "badgeClass": "cy", "rt": "UPDATED · 2026.05", "action": "DOWNLOAD →",
+    "href": "resume.pdf", "live": true
+  }
+]

@@ -1,0 +1,293 @@
+[
+  {
+    "id": "SYS-001", "slug": "discord-ops", "name": "discord-ops", "statusLabel": "v2.7.7A",
+    "badge": { "label": "LIVE", "cls": "live" },
+    "desc": "5-agent Claude council fronted by Discord. Admin elevation broker, cron scheduler, vault write-guard.",
+    "grid": {
+      "telHead": "// 30D UPTIME", "telRight": "99.94%", "val": "385", "unit": "tests passing",
+      "spark": { "stroke": "#5ee892", "points": "0,8 8,9 16,7 24,10 32,7 40,8 48,6 56,9 64,7 72,8 80,6 88,7 100,5" },
+      "stackMini": ["Python", "FastAPI", "Agent SDK", "MCP"],
+      "footLeft": "● ONLINE · 5 / 5 AGENTS", "footStatusDot": true
+    },
+    "detail": {
+      "stamp": "// SYS-001 · v2.7.7A · OPERATOR-OWNED",
+      "sub": "A Discord-fronted Claude Agent SDK council. An operator agent coordinates a small set of specialists plus per-thread sub-agents. FastAPI + SQLite, admin-elevation broker, cron scheduler, vault write-guard hook.",
+      "metaBadges": [
+        { "label": "LIVE · PROD", "cls": "live" },
+        { "label": "5 AGENTS", "cls": "pur" },
+        { "label": "PYTHON 3.12", "cls": "cy" },
+        { "label": "PRIVATE", "cls": "am" }
+      ],
+      "repoUrl": "https://github.com/Aquinas-Protocol/domo", "repoLabel": "VIEW OSS BUILD ↗", "isPrivate": true,
+      "kpis": [
+        { "k": "Uptime · 30d", "v": "99.94%", "vCls": "g", "t": "▲ 43m total down" },
+        { "k": "Agent Turns · 30d", "v": "1,787", "vCls": "p", "t": "▲ 247 vs prior" },
+        { "k": "Tests Passing", "v": "385 / 385", "vCls": "g", "t": "CI green" },
+        { "k": "Active Subsystems", "v": "9", "vCls": "c", "t": "all green" }
+      ],
+      "paragraphs": [
+        "discord-ops is the personal-instance production system that <b>Domo</b> graduated out of. An operator agent coordinates a small council via Discord DMs and a dedicated channel, spawns per-thread sub-agents for isolated work, and exposes a local Mission Control dashboard for status + intervention. It runs on the same second-brain vault as shared memory.",
+        "The interesting parts aren't the agents themselves — those are off-the-shelf Claude. The interesting parts are the <b>seam, the scheduler, and the broker</b>: a per-feature wire pattern that scopes tools per-agent and self-disables when config is absent; a cron runner that's safe to retry; and a Windows admin-elevation broker that passes only an approved request token over a local channel (never the command text itself)."
+      ],
+      "featureList": [
+        { "name": "Multi-agent council", "desc": "5 agents, each its own Discord bot account, persona, model, tool allowlist." },
+        { "name": "Per-thread sub-agents", "desc": "spawn_thread_agent isolates one-off work into its own thread." },
+        { "name": "Admin elevation broker", "desc": "LocalSystem service; bot passes a token only, gated by Discord Approve/Deny." },
+        { "name": "Cron scheduler", "desc": "Persisted jobs, idempotent runs, hook into MCP tools across all agents." },
+        { "name": "Vault write-guard", "desc": "PreToolUse hook blocks writes to protected paths and reads of secrets." },
+        { "name": "Mission Control UI", "desc": "PIN-gated dashboard views, vanilla JS, served by FastAPI static." }
+      ],
+      "stackMatrix": [
+        { "l": "// LANG", "n": "Python 3.12" }, { "l": "// FRAMEWORK", "n": "FastAPI" },
+        { "l": "// AGENT", "n": "Claude Agent SDK" }, { "l": "// PROTOCOL", "n": "MCP" },
+        { "l": "// CHAT", "n": "discord.py" }, { "l": "// STATE", "n": "SQLite" },
+        { "l": "// HOST", "n": "Windows" }, { "l": "// IPC", "n": "Named Pipes" }
+      ],
+      "deps": [
+        { "name": "claude-agent-sdk", "ver": "0.4.2" }, { "name": "discord.py", "ver": "2.4.0" },
+        { "name": "fastapi", "ver": "0.115" }, { "name": "aiosqlite", "ver": "0.20" }, { "name": "pydantic", "ver": "2.9" }
+      ],
+      "commits": [
+        { "h": "scheduler", "msg": "idempotent retry on transient failure", "t": "recent" },
+        { "h": "broker", "msg": "tighten elevation channel to LocalSystem only", "t": "recent" },
+        { "h": "dashboard", "msg": "cron view live-toggles", "t": "recent" }
+      ],
+      "related": [
+        { "name": "Domo", "meta": "OSS · SYS-002", "slug": "domo" },
+        { "name": "second-brain", "meta": "VAULT · SYS-003", "slug": "second-brain" },
+        { "name": "elevation-broker", "meta": "LIVE · SYS-004", "slug": "elevation-broker" }
+      ]
+    }
+  },
+  {
+    "id": "SYS-002", "slug": "domo", "name": "Domo", "statusLabel": "v0.1.0",
+    "badge": { "label": "OSS · MIT", "cls": "pur" },
+    "desc": "Standalone public release of the platform. Sanitized extraction with plugin seam and wizard installer.",
+    "grid": {
+      "telHead": "// RELEASE", "telRight": "MIT", "val": "v0.1.0", "unit": "public · 2026.05",
+      "spark": { "stroke": "#9d7cff", "points": "0,30 14,27 28,24 42,20 56,16 70,12 84,8 100,4" },
+      "stackMini": ["Python", "MCP", "CLI"],
+      "footLeft": "RELEASED 2026.05.28", "footStatusDot": false
+    },
+    "detail": {
+      "stamp": "// SYS-002 · v0.1.0 · MIT",
+      "sub": "The MIT-licensed public extraction of discord-ops. Personal subsystems are excluded; the multi-agent core, Mission Control dashboard, cron, calendar, video, GPT-5 bridge, and admin elevation ship behind a plugin seam with a setup wizard.",
+      "metaBadges": [
+        { "label": "OSS · MIT", "cls": "pur" },
+        { "label": "PUBLIC", "cls": "live" },
+        { "label": "PYTHON 3.12", "cls": "cy" }
+      ],
+      "repoUrl": "https://github.com/Aquinas-Protocol/domo", "repoLabel": "VIEW REPO ↗", "isPrivate": false,
+      "kpis": [
+        { "k": "License", "v": "MIT", "vCls": "p", "t": "permissive" },
+        { "k": "Version", "v": "v0.1.0", "vCls": "c", "t": "shipped 2026.05" },
+        { "k": "Install", "v": "wizard", "vCls": "g", "t": "one-command setup" },
+        { "k": "Surface", "v": "auth-neutral", "vCls": "", "t": "no secrets in repo" }
+      ],
+      "paragraphs": [
+        "Domo is the sanitized, open-source version of the private discord-ops bot. It keeps the architecture — operator + specialist council, per-thread sub-agents, Mission Control dashboard, cron scheduler, calendar, video/watch, a GPT-5 specialist bridge, admin elevation, a credit governor, and a vault write-guard — and strips everything personal.",
+        "The point of Domo is the <b>plugin seam</b>: every feature wires through a single pattern that scopes tools per-agent and self-disables when its config is absent, so the public build runs with zero personal data and an installer wizard provisions the rest."
+      ],
+      "featureList": [
+        { "name": "Plugin seam", "desc": "Per-feature wire pattern; features self-disable when unconfigured." },
+        { "name": "Setup wizard", "desc": "One-command install provisions config, service, and tokens." },
+        { "name": "Mission Control", "desc": "Local dashboard for status, scheduling, and intervention." },
+        { "name": "Sanitized history", "desc": "No personal data, senders, or secrets in the public tree." }
+      ],
+      "stackMatrix": [
+        { "l": "// LANG", "n": "Python 3.12" }, { "l": "// FRAMEWORK", "n": "FastAPI" },
+        { "l": "// AGENT", "n": "Claude Agent SDK" }, { "l": "// PROTOCOL", "n": "MCP" },
+        { "l": "// CHAT", "n": "discord.py" }, { "l": "// LICENSE", "n": "MIT" }
+      ],
+      "deps": [],
+      "commits": [],
+      "related": [
+        { "name": "discord-ops", "meta": "LIVE · SYS-001", "slug": "discord-ops" },
+        { "name": "second-brain", "meta": "VAULT · SYS-003", "slug": "second-brain" }
+      ]
+    }
+  },
+  {
+    "id": "SYS-003", "slug": "second-brain", "name": "second-brain", "statusLabel": "VAULT",
+    "badge": { "label": "VAULT", "cls": "cy" },
+    "desc": "Living knowledge vault — read-only raw/ sources curated into an atomic, linked wiki/. Shared agent memory.",
+    "grid": {
+      "telHead": "// PATTERN", "telRight": "OSS", "val": "raw → wiki", "unit": "atomic · linked",
+      "spark": { "stroke": "#4ddbe6", "points": "0,28 10,26 20,24 30,22 40,18 50,16 60,14 70,11 80,9 90,7 100,5" },
+      "stackMini": ["Markdown", "Frontmatter", "Skills"],
+      "footLeft": "CLAUDE-CURATED", "footStatusDot": false
+    },
+    "detail": {
+      "stamp": "// SYS-003 · VAULT · OSS",
+      "sub": "A Karpathy-pattern personal knowledge vault: a read-only raw/ of source material (exports, transcripts, articles) curated by Claude into an atomic, source-attributed, [[wiki-linked]] wiki/. The shared memory layer the agents read and write.",
+      "metaBadges": [
+        { "label": "VAULT", "cls": "cy" },
+        { "label": "OSS", "cls": "pur" },
+        { "label": "MARKDOWN", "cls": "" }
+      ],
+      "repoUrl": "https://github.com/Aquinas-Protocol/second-brain", "repoLabel": "VIEW REPO ↗", "isPrivate": false,
+      "kpis": [
+        { "k": "Structure", "v": "raw → wiki", "vCls": "c", "t": "source vs curated" },
+        { "k": "Pages", "v": "atomic", "vCls": "p", "t": "one idea each" },
+        { "k": "Links", "v": "[[graph]]", "vCls": "g", "t": "wiki-linked" },
+        { "k": "Skills", "v": "5+", "vCls": "", "t": "ingest · lint · log" }
+      ],
+      "paragraphs": [
+        "second-brain separates <b>raw/</b> (never modified — exports, transcripts, articles, notes) from <b>wiki/</b> (Claude-maintained atomic pages with required frontmatter and inline source attribution). Slash skills (<b>/ingest, /lint, /log, /standup, /query</b>) maintain the structure and keep it healthy.",
+        "The design goal is contextual memory, mistake-tracking, and progress documentation — every page links back to prior work and flags what previously failed and why."
+      ],
+      "featureList": [
+        { "name": "raw / wiki split", "desc": "Read-only sources vs curated, attributed pages." },
+        { "name": "Atomic pages", "desc": "One idea per page; self-contained, [[wiki-linked]]." },
+        { "name": "Frontmatter discipline", "desc": "Required typed metadata; lint enforces health." },
+        { "name": "Slash skills", "desc": "/ingest, /lint, /log, /standup, /query maintain the graph." }
+      ],
+      "stackMatrix": [
+        { "l": "// FORMAT", "n": "Markdown" }, { "l": "// META", "n": "YAML frontmatter" },
+        { "l": "// LINKS", "n": "[[wiki-links]]" }, { "l": "// AGENT", "n": "Claude Code" }
+      ],
+      "deps": [],
+      "commits": [],
+      "related": [
+        { "name": "discord-ops", "meta": "LIVE · SYS-001", "slug": "discord-ops" },
+        { "name": "Domo", "meta": "OSS · SYS-002", "slug": "domo" }
+      ]
+    }
+  },
+  {
+    "id": "SYS-004", "slug": "elevation-broker", "name": "elevation-broker", "statusLabel": "v1.4",
+    "badge": { "label": "LIVE", "cls": "live" },
+    "desc": "Privilege-separation service. The bot requests approved Windows admin ops via token only — never command text.",
+    "grid": {
+      "telHead": "// PROTOCOL", "telRight": "0 BREACHES", "val": "token-only", "unit": "approval-gated",
+      "spark": { "stroke": "#ffb44d", "points": "0,18 14,20 28,15 42,22 56,12 70,18 84,10 100,14" },
+      "stackMini": ["Windows", "Named Pipes", "PowerShell"],
+      "footLeft": "● RUNNING", "footStatusDot": true
+    },
+    "detail": {
+      "stamp": "// SYS-004 · v1.4 · PRIVILEGE SEPARATION",
+      "sub": "A two-service privilege-separation design. The bot runs as the user; a separate broker runs elevated and accepts only an approved request token over a local channel — so the bot can trigger approved admin operations without ever holding elevated rights itself.",
+      "metaBadges": [
+        { "label": "LIVE", "cls": "live" },
+        { "label": "PRIVATE", "cls": "am" },
+        { "label": "WINDOWS", "cls": "cy" }
+      ],
+      "repoUrl": null, "repoLabel": "", "isPrivate": true,
+      "kpis": [
+        { "k": "Pattern", "v": "2-service", "vCls": "p", "t": "user / elevated split" },
+        { "k": "Payload", "v": "token-only", "vCls": "c", "t": "never command text" },
+        { "k": "Gate", "v": "approve/deny", "vCls": "g", "t": "human-in-the-loop" },
+        { "k": "Breaches", "v": "0", "vCls": "g", "t": "by design" }
+      ],
+      "paragraphs": [
+        "The elevation-broker exists so the assistant can perform approved Windows administrative actions without escalating its own privileges. The main bot runs unprivileged; the broker runs elevated and only ever receives an <b>opaque request token</b> over a local channel — never the command string.",
+        "Every elevated action is gated behind an explicit Discord Approve/Deny step, so privilege use is auditable and human-approved rather than implicit."
+      ],
+      "featureList": [
+        { "name": "Two-service split", "desc": "Unprivileged bot + elevated broker; no shared privilege." },
+        { "name": "Token-only payload", "desc": "The broker validates a request token, not arbitrary command text." },
+        { "name": "Approval gate", "desc": "Each elevated op requires an explicit human Approve/Deny." }
+      ],
+      "stackMatrix": [
+        { "l": "// LANG", "n": "Python" }, { "l": "// SERVICE", "n": "Windows / NSSM" },
+        { "l": "// IPC", "n": "Named Pipes" }, { "l": "// GATE", "n": "Discord HITL" }
+      ],
+      "deps": [],
+      "commits": [],
+      "related": [
+        { "name": "discord-ops", "meta": "LIVE · SYS-001", "slug": "discord-ops" }
+      ]
+    }
+  },
+  {
+    "id": "SYS-005", "slug": "home-server", "name": "home-server", "statusLabel": "INFRA",
+    "badge": { "label": "INFRA", "cls": "cy" },
+    "desc": "Self-hosted bare-metal Windows box running the agent service, scheduled jobs, and secure remote access.",
+    "grid": {
+      "telHead": "// HOST", "telRight": "NOMINAL", "val": "self-hosted", "unit": "services + cron",
+      "spark": { "stroke": "#5ee892", "points": "0,28 10,26 20,30 30,22 40,28 50,18 60,28 70,12 80,26 90,20 100,28" },
+      "stackMini": ["Windows", "NSSM", "Tailscale"],
+      "footLeft": "● NOMINAL", "footStatusDot": true
+    },
+    "detail": {
+      "stamp": "// SYS-005 · INFRA · SELF-HOSTED",
+      "sub": "The bare-metal Windows host the agent stack runs on. NSSM keeps the bot alive as a service; Task Scheduler drives nightly jobs; Tailscale provides secure remote access. Migrated off a hypervisor to bare metal for reliability.",
+      "metaBadges": [
+        { "label": "INFRA", "cls": "cy" },
+        { "label": "PRIVATE", "cls": "am" },
+        { "label": "WINDOWS", "cls": "" }
+      ],
+      "repoUrl": null, "repoLabel": "", "isPrivate": true,
+      "kpis": [
+        { "k": "Form", "v": "bare-metal", "vCls": "c", "t": "off hypervisor" },
+        { "k": "Service", "v": "NSSM", "vCls": "p", "t": "always-on bot" },
+        { "k": "Jobs", "v": "scheduled", "vCls": "g", "t": "nightly ingest +" },
+        { "k": "Access", "v": "Tailscale", "vCls": "", "t": "private mesh" }
+      ],
+      "paragraphs": [
+        "home-server is the reliability layer under everything else: a self-hosted Windows machine that runs the agent service via NSSM, executes scheduled jobs through Task Scheduler, and is reachable only over a private Tailscale mesh.",
+        "It was deliberately migrated from a hypervisor to bare metal to cut a layer of failure and simplify recovery — the operational-reliability discipline from service-desk work applied to a personal stack."
+      ],
+      "featureList": [
+        { "name": "Always-on service", "desc": "NSSM supervises the bot; hard-reset recovery semantics." },
+        { "name": "Scheduled jobs", "desc": "Task Scheduler drives nightly ingest and maintenance." },
+        { "name": "Private remote access", "desc": "Tailscale mesh, unattended daemon, no public ingress." }
+      ],
+      "stackMatrix": [
+        { "l": "// OS", "n": "Windows 11 Pro" }, { "l": "// SERVICE", "n": "NSSM" },
+        { "l": "// SCHED", "n": "Task Scheduler" }, { "l": "// NET", "n": "Tailscale" }
+      ],
+      "deps": [],
+      "commits": [],
+      "related": [
+        { "name": "discord-ops", "meta": "LIVE · SYS-001", "slug": "discord-ops" }
+      ]
+    }
+  },
+  {
+    "id": "SYS-006", "slug": "email-cull", "name": "email-cull", "statusLabel": "v0.3",
+    "badge": { "label": "LIVE", "cls": "live" },
+    "desc": "Daily Gmail triage pipeline — scan, propose, human-approve, apply. HMAC-gated, idempotent, vault-logged.",
+    "grid": {
+      "telHead": "// PIPELINE", "telRight": "HMAC-GATED", "val": "scan → apply", "unit": "human-approved",
+      "spark": { "stroke": "#4ddbe6", "points": "0,18 10,22 20,14 30,20 40,12 50,18 60,10 70,16 80,8 90,14 100,6" },
+      "stackMini": ["Python", "Gmail API", "SQLite"],
+      "footLeft": "RAN 06:00 UTC", "footStatusDot": false
+    },
+    "detail": {
+      "stamp": "// SYS-006 · v0.3 · DAILY TRIAGE",
+      "sub": "A daily inbox-cleanup pipeline. It scans Gmail against rules, proposes cull candidates, waits for human approval in Mission Control, then a separate subprocess applies the change. State-machine per scan, HMAC-signed thread tokens, idempotent retries.",
+      "metaBadges": [
+        { "label": "LIVE", "cls": "live" },
+        { "label": "PRIVATE", "cls": "am" },
+        { "label": "PYTHON", "cls": "cy" }
+      ],
+      "repoUrl": null, "repoLabel": "", "isPrivate": true,
+      "kpis": [
+        { "k": "Flow", "v": "scan→apply", "vCls": "c", "t": "propose + approve" },
+        { "k": "Tokens", "v": "HMAC", "vCls": "p", "t": "signed thread refs" },
+        { "k": "Retries", "v": "idempotent", "vCls": "g", "t": "safe to re-run" },
+        { "k": "Gate", "v": "human", "vCls": "", "t": "no auto-trash" }
+      ],
+      "paragraphs": [
+        "email-cull is a safety-first automation: it never trashes anything on its own. A scan proposes candidates, the operator approves them in the dashboard, and only then does an isolated apply step act — each thread referenced by an <b>HMAC-signed token</b> so a stale or forged reference can't act.",
+        "It's built as a state machine per scan with pre-flight guards, stale-thread detection, and idempotent retries — the same correctness discipline as production service work, applied to an inbox."
+      ],
+      "featureList": [
+        { "name": "Propose → approve → apply", "desc": "Three stages; nothing is trashed without explicit approval." },
+        { "name": "HMAC-signed tokens", "desc": "Every thread reference is signed; stale/forged refs are rejected." },
+        { "name": "Idempotent apply", "desc": "Retries are safe; pre-flight guards + stale-thread detection." }
+      ],
+      "stackMatrix": [
+        { "l": "// LANG", "n": "Python" }, { "l": "// API", "n": "Gmail OAuth" },
+        { "l": "// STATE", "n": "SQLite" }, { "l": "// GATE", "n": "Dashboard HITL" }
+      ],
+      "deps": [],
+      "commits": [],
+      "related": [
+        { "name": "discord-ops", "meta": "LIVE · SYS-001", "slug": "discord-ops" },
+        { "name": "second-brain", "meta": "VAULT · SYS-003", "slug": "second-brain" }
+      ]
+    }
+  }
+]

@@ -1,0 +1,77 @@
+[
+  {
+    "when": "2025.08 → PRESENT", "dur": "10 MONTHS · CURRENT", "current": true,
+    "title": "Regional Operations IT Manager — AMER",
+    "org": "<b>EOS IT Solutions</b> · United States · Remote",
+    "badges": [
+      { "label": "CURRENT", "cls": "live" },
+      { "label": "SLA OPS", "cls": "pur" },
+      { "label": "MSP MGMT", "cls": "cy" }
+    ],
+    "stat": ["SCALE · 12,838 USERS", "SPAN · 3 COUNTRIES", "REPORTS · 13 MSP"],
+    "mission": "Direct regional IT service delivery and asset management across AMER through an MSP partnership — <em>own the SLA, build the tooling under it, scale the people running it.</em>",
+    "achievements": [
+      { "metric": "95.3%", "metricCls": "g", "desc": "<b>CSAT</b> across ~1,970 tickets/mo, multi-timezone (17,718 tickets / 9 months)" },
+      { "metric": "98.6%", "metricCls": "g", "desc": "<b>TTFR SLA</b> achieved through structured operational checklists + service-desk governance standards" },
+      { "metric": "91.1%", "metricCls": "c", "desc": "<b>TTR SLA</b> sustained while reducing backlog through process standardization" },
+      { "metric": "1,410", "metricCls": "", "desc": "<b>Enterprise assets</b> under lifecycle management — procurement → retirement, <b>100% audit pass</b>" },
+      { "metric": "13", "metricCls": "a", "desc": "<b>Service Desk + ITAM specialists</b> directed through MSP across 3 countries" }
+    ],
+    "programs": [
+      "<b>Daily Operational Task Tracker</b> — consistent ticket-filter monitoring + ticket hygiene",
+      "<b>Dynamic Service Desk Allocation Tracker</b> (Sheets + JQL) — workload distribution across timezones",
+      "<b>Global Walk-Up Support Tracker</b> — in-person interaction metrics + leadership reporting",
+      "<b>Zoom Room AV Tracking System</b> — conference-room infrastructure maintenance cycles",
+      "<b>Service Desk PTO Continuity SOP</b> — uninterrupted coverage during technician absences"
+    ],
+    "tools": ["Jira", "JQL", "Google Sheets", "Zoom", "Okta", "ITIL", "ITAM"],
+    "awards": []
+  },
+  {
+    "when": "2021.01 → 2025.07", "dur": "4 YRS 6 MO · HONORABLE", "current": false,
+    "title": "Infantryman (11B) / Acting Training Room NCO",
+    "org": "<b>U.S. Army</b> · 1st Cavalry Division · 3-8 CAV · C CO, HQ · Fort Cavazos, TX",
+    "badges": [
+      { "label": "MILITARY", "cls": "am" },
+      { "label": "LEADERSHIP", "cls": "pur" },
+      { "label": "FIELD OPS", "cls": "cy" }
+    ],
+    "stat": ["RESPONSIBLE · 100+ PAX", "DEPLOYMENTS · 2", "AWARDS · 5"],
+    "mission": "Acting Training Room NCO managing personnel readiness, scheduling, and operational reporting at company level — <em>keep 100+ soldiers ready to deploy, on time, with the right equipment.</em>",
+    "achievements": [
+      { "metric": "100+", "metricCls": "", "desc": "<b>Personnel readiness</b> management — scheduling, ops reporting, internal Army systems" },
+      { "metric": "2", "metricCls": "c", "desc": "<b>Multinational deployments</b> — Operation Assure, Deter and Reinforce (Poland & Lithuania, 2022–23); Operation Allies Welcome (Camp Atterbury, IN, 2021)" },
+      { "metric": "100%", "metricCls": "g", "desc": "<b>Vehicle maintenance + equipment tracking</b> for high-value command vehicles and crew-served weapons" },
+      { "metric": "NTC", "metricCls": "a", "desc": "Successful execution of <b>field training events, gunnery, and National Training Center rotations</b>" }
+    ],
+    "programs": [],
+    "tools": [],
+    "awards": [
+      { "name": "<b>Army Achievement</b><br>Medal" },
+      { "name": "<b>Good Conduct</b><br>Medal" },
+      { "name": "<b>Armed Forces Svc</b><br>Medal" },
+      { "name": "<b>Nat'l Defense Svc</b><br>Medal" },
+      { "name": "<b>Meritorious Unit</b><br>Commendation" }
+    ]
+  },
+  {
+    "when": "2014.06 → 2021.01", "dur": "6 YRS 7 MO · INDEPENDENT", "current": false,
+    "title": "Owner / IT Systems Consultant",
+    "org": "<b>RescueFix</b> · Reno, NV · Self-employed",
+    "badges": [
+      { "label": "FOUNDER", "cls": "pur" },
+      { "label": "INFRA", "cls": "cy" },
+      { "label": "SECURITY", "cls": "" }
+    ],
+    "stat": ["CLIENTS · INDIVIDUAL + SMB", "SCOPE · END-TO-END"],
+    "mission": "Independent IT consulting business — <em>infrastructure support, security hardening, custom software for individual and small-business clients across diverse environments.</em>",
+    "achievements": [
+      { "metric": "10+", "metricCls": "", "desc": "<b>Years</b> hands-on Python / systems work originated here" },
+      { "metric": "SEC", "metricCls": "c", "desc": "<b>Security testing + vulnerability analysis</b> with targeted hardening" },
+      { "metric": "CUSTOM", "metricCls": "g", "desc": "Built and deployed <b>custom software tools + automation</b>" }
+    ],
+    "programs": [],
+    "tools": ["Python", "Bash", "PowerShell", "Linux", "Windows", "Networking", "Security Hardening"],
+    "awards": []
+  }
+]

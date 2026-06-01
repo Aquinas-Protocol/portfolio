@@ -1,0 +1,29 @@
+---
+import { withBase } from '../lib/url';
+import type { Channel } from '../lib/content';
+
+interface Props {
+  ch: Channel;
+}
+const { ch } = Astro.props;
+
+// Live channels render as links; placeholder (proof-of-concept) channels render as a non-linking
+// div so recruiters never hit a dead link.
+const href = ch.href ? (/^[a-z]+:/i.test(ch.href) ? ch.href : withBase(ch.href)) : null;
+const Tag = href ? 'a' : 'div';
+---
+<Tag class="freq" {...(href ? { href } : { 'aria-disabled': 'true' })}>
+  <div class="ftop">
+    <div class={`ico ${ch.iconClass}`} aria-hidden="true">{ch.icon}</div>
+    <span class={`badge ${ch.badgeClass}`}>{ch.badge}</span>
+  </div>
+  <div>
+    <h3>{ch.name}</h3>
+    <div class="handle">{ch.handle}</div>
+  </div>
+  <div class="best" set:html={ch.best}></div>
+  <div class="ftMeta">
+    <span class="rt" set:html={ch.rt}></span>
+    <span class="open">{ch.action}</span>
+  </div>
+</Tag>

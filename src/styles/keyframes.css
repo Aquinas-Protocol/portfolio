@@ -1,0 +1,16 @@
+/* Motion — pulse/blink/scroll. Gated behind prefers-reduced-motion: no-preference so that
+   reduced-motion users get static dots/cursor/feed (the animation properties become no-ops when
+   their @keyframes are undefined). Ported from portfolio-reference.html (lines 40-42). */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .55; transform: scale(.85); }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  @keyframes scroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+}

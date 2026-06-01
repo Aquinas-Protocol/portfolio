@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FrequencyTile from '../components/FrequencyTile.astro';
+import { profile, channels } from '../lib/content';
+
+const a = profile.availability;
+const cm = profile.contactMeta;
+---
+<BaseLayout
+  title="Contact — Dylan Palumbo"
+  description="Hailing frequencies open. Email, LinkedIn, GitHub, and resume — pick the channel that matches your intent. Open to senior IC roles in AI infra, platform, and SRE."
+  activeRoute="contact"
+>
+  <div class="wrap" style="padding-top:36px;padding-bottom:80px">
+    <div class="bHero">
+      <div>
+        <div class="stampLine">{cm.stamp}</div>
+        <h1 class="pageTitle">Hailing <span class="grad">frequencies</span><br>open.</h1>
+        <div class="ledeText">{cm.lede}</div>
+      </div>
+      <div class="right">
+        <span set:html={`ALL CHANNELS · <b>${cm.allChannels}</b>`}></span>
+        <span set:html={`FASTEST · <b>${cm.fastest}</b>`}></span>
+        <span set:html={`SLOWEST · <b>${cm.slowest}</b>`}></span>
+        <span set:html={`BEST FIRST CONTACT · <b>${cm.bestFirst}</b>`}></span>
+      </div>
+    </div>
+
+    <div class="freqGrid">
+      {channels.map((ch) => <FrequencyTile ch={ch} />)}
+    </div>
+
+    <div class="bottomGrid">
+      <div class="quickForm">
+        <h3>// QUICK MESSAGE</h3>
+        <div class="sub">For when none of the channels above fit. Async — I'll read it within 24 hours.</div>
+        <form action={`mailto:${profile.handles.email}`} method="post" enctype="text/plain">
+          <div class="qf"><label for="qfFrom">NAME · EMAIL</label><input id="qfFrom" name="from" type="text" /></div>
+          <div class="qf"><label for="qfMsg">WHAT'S THE ASK</label><textarea id="qfMsg" name="message" placeholder="// short and direct works best"></textarea></div>
+          <button class="send" type="submit">SEND →</button>
+        </form>
+      </div>
+
+      <div class="availPanel">
+        <h3>AVAILABILITY · OPEN</h3>
+        <div class="big">Open to <span class="grad">senior IC roles</span><br>in AI infra, platform, SRE.</div>
+        <div class="meta" set:html={`LOCATION · <b>${a.location}</b><br>ENGAGEMENT · <b>${a.engagement}</b><br>EARLIEST START · <b class="acc">${a.earliestStart}</b><br>CONTRACT · <b>${a.contract}</b><br>VISA · <b>${a.visa}</b>`}></div>
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--purple);letter-spacing:.18em;margin-bottom:8px">// TARGETING</div>
+          <div class="targetTags">{a.targetTags.map((t) => <span class="tt">{t}</span>)}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

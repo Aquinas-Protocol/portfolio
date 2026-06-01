@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Role from '../components/Role.astro';
+import { profile, experience, careerStats } from '../lib/content';
+import { withBase } from '../lib/url';
+---
+<BaseLayout
+  title="Experience — Dylan Palumbo"
+  description="From IT consulting and U.S. Army leadership to AMER service-delivery management — a decade of operating, training, and shipping, now applied to senior IC engineering on AI infrastructure."
+  activeRoute="experience"
+>
+  <div class="wrap" style="padding-top:36px;padding-bottom:64px">
+    <div class="intro">
+      <div>
+        <div class="stampLine">// SERVICE RECORD · 12 YEARS · 3 THEATERS</div>
+        <h1 class="pageTitle">From <span class="grad">field ops</span> to<br>multi-agent infrastructure.</h1>
+        <div class="ledeText">
+          A decade of operating, training, and shipping — across IT consulting, U.S. Army leadership, and AMER
+          service-delivery management. Currently transitioning the same operational discipline into senior IC
+          engineering on AI infrastructure.
+        </div>
+      </div>
+      <div class="right">
+        <a class="btn" href={withBase(profile.handles.resume)}>DOWNLOAD RESUME</a>
+        <a class="btn primary" href={withBase('/contact/')}>CONTACT →</a>
+      </div>
+    </div>
+
+    <div class="careerStats">
+      {careerStats.map((c) => (
+        <div class="cs"><div class="k">{c.k}</div><div class={`v ${c.vClass}`}>{c.v}</div><div class="t">{c.t}</div></div>
+      ))}
+    </div>
+
+    <div class="timeline">
+      {experience.map((r) => <Role role={r} />)}
+    </div>
+  </div>
+</BaseLayout>

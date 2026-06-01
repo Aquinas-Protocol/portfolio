@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/url';
+---
+<BaseLayout title="404 · Signal Lost — Dylan Palumbo" description="Page not found.">
+  <div class="wrap" style="padding-top:64px;padding-bottom:120px;text-align:center">
+    <div class="stampLine" style="justify-content:center">// 404 · SIGNAL LOST</div>
+    <h1 class="pageTitle">Off the <span class="grad">grid.</span></h1>
+    <div class="ledeText" style="margin-left:auto;margin-right:auto">
+      That route isn't on the manifest. The page may have moved, or never existed.
+    </div>
+    <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a class="btn primary" href={withBase('/')}>← BACK TO OVERVIEW</a>
+      <a class="btn" href={withBase('/systems/')}>VIEW SYSTEMS</a>
+    </div>
+  </div>
+</BaseLayout>

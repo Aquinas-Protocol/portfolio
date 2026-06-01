@@ -1,0 +1,58 @@
+{
+  "name": "Dylan Palumbo",
+  "brand": "DYLAN PALUMBO",
+  "callsign": "AQUINAS",
+  "roleFamily": "Senior IC · AI Infra",
+  "location": "Georgetown, TX → AZ",
+  "yearsExperience": "10+",
+  "focus": "Python / Systems",
+  "availabilityLabel": "Available",
+  "hero": {
+    "stamp": "// CALLSIGN · AQUINAS · CLEARANCE OMEGA",
+    "headPre": "I build ",
+    "headGrad": "production multi-agent",
+    "headPost": " systems",
+    "sub": "Regional Ops IT Manager (AMER) at EOS — shipping <em>discord-ops</em>, a 5-agent Claude council with admin elevation, cron, and a vault write-guard, as proof-of-work for a transition into senior IC engineering in AI / agentic systems, platform, or reliability."
+  },
+  "operator": {
+    "fileNo": "// OPERATOR · FILE 077",
+    "idCode": "ID-AQU-7725",
+    "cells": [
+      { "k": "Callsign", "v": "AQUINAS", "tone": "acc" },
+      { "k": "Role Family", "v": "Senior IC · AI Infra" },
+      { "k": "Council Size", "v": "5 agents", "tone": "gn" },
+      { "k": "Uptime · 30d", "v": "99.94%", "tone": "gn" }
+    ],
+    "statusLeft": "SYSTEMS NOMINAL",
+    "statusRight": "14 CRON RUNS TODAY"
+  },
+  "availability": {
+    "headline": "Open to senior IC roles in AI infra, platform, SRE.",
+    "location": "Georgetown, TX → AZ",
+    "engagement": "Remote · full-time",
+    "earliestStart": "Negotiable",
+    "contract": "Open to W2 or 1099",
+    "visa": "U.S. citizen · no sponsorship needed",
+    "targetTags": ["AI / Agent Infra", "Platform", "SRE / Reliability", "Senior Backend", "Staff Ops Hybrid"]
+  },
+  "contactMeta": {
+    "stamp": "// 6 CHANNELS OPEN · PICK YOUR FREQUENCY",
+    "lede": "Six ways to reach me, each tuned for a different kind of conversation. Pick the channel that matches your intent — async or sync, formal or casual, recruiter or peer.",
+    "allChannels": "ACTIVE",
+    "fastest": "EMAIL · &lt;24h",
+    "slowest": "DISCORD · 1-3d",
+    "bestFirst": "EMAIL or LINKEDIN"
+  },
+  "footer": {
+    "sig": "// DYLAN PALUMBO · AQUINAS-PROTOCOL · 2026",
+    "rightSig": "OPEN TO SENIOR IC ROLES · AI INFRA / PLATFORM / SRE"
+  },
+  "handles": {
+    "email": "palumbo.d555@gmail.com",
+    "github": "https://github.com/Aquinas-Protocol",
+    "githubLabel": "github.com/Aquinas-Protocol",
+    "linkedin": "https://linkedin.com/in/dylan-palumbo",
+    "linkedinLabel": "linkedin.com/in/dylan-palumbo",
+    "resume": "resume.pdf"
+  }
+}

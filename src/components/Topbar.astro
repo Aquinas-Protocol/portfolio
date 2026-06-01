@@ -1,0 +1,28 @@
+---
+import { withBase } from '../lib/url';
+import { profile } from '../lib/content';
+
+interface Props {
+  activeRoute?: 'overview' | 'systems' | 'experience' | 'writing' | 'contact';
+}
+const { activeRoute } = Astro.props;
+
+const nav = [
+  { key: 'overview', label: 'Overview', href: withBase('/') },
+  { key: 'systems', label: 'Systems', href: withBase('/systems/') },
+  { key: 'experience', label: 'Experience', href: withBase('/experience/') },
+  { key: 'writing', label: 'Writing', href: withBase('/writing/') },
+  { key: 'contact', label: 'Contact', href: withBase('/contact/') },
+];
+---
+<header class="topbar">
+  <a class="brand" href={withBase('/')}><span class="logo">D</span> {profile.brand}</a>
+  <nav class="tnav" aria-label="Primary">
+    {nav.map((n) => (
+      <a class={n.key === activeRoute ? 'act' : ''} href={n.href} aria-current={n.key === activeRoute ? 'page' : undefined}>{n.label}</a>
+    ))}
+  </nav>
+  <div class="tbRight">
+    <span class="pill on"><span class="dot" aria-hidden="true"></span>{profile.availabilityLabel.toUpperCase()}</span>
+  </div>
+</header>

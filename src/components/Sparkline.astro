@@ -1,0 +1,11 @@
+---
+interface Props {
+  stroke: string;
+  points: string;
+  viewBox?: string;
+}
+const { stroke, points, viewBox = '0 0 100 30' } = Astro.props;
+---
+<svg class="spark" viewBox={viewBox} preserveAspectRatio="none" aria-hidden="true">
+  <polyline fill="none" stroke={stroke} stroke-width="1.5" points={points} />
+</svg>

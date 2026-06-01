@@ -1,0 +1,15 @@
+---
+import { withBase } from '../lib/url';
+import { profile } from '../lib/content';
+const h = profile.handles;
+---
+<footer class="footer">
+  <div class="sig">{profile.footer.sig}</div>
+  <div class="links">
+    <a href={h.github}>github</a>
+    <a href={h.linkedin}>linkedin</a>
+    <a href={`mailto:${h.email}`}>email</a>
+    <a href={withBase(h.resume)}>resume.pdf</a>
+  </div>
+  <div class="sig">{profile.footer.rightSig}</div>
+</footer>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SystemCard from '../../components/SystemCard.astro';
+import { systems } from '../../lib/content';
+
+const total = systems.length;
+const live = systems.filter((s) => s.badge.cls === 'live').length;
+const oss = systems.filter((s) => !s.detail.isPrivate).length;
+const vault = systems.filter((s) => s.badge.label === 'VAULT').length;
+---
+<BaseLayout
+  title="Systems — Dylan Palumbo"
+  description="The fleet: discord-ops, Domo (OSS), second-brain, elevation-broker, home-server, email-cull — production multi-agent infrastructure and the systems around it."
+  activeRoute="systems"
+>
+  <div class="wrap" style="padding-top:36px;padding-bottom:64px">
+    <div class="aHead">
+      <div class="left">
+        <div class="stampLine">// FLEET STATUS · {total} SYSTEMS</div>
+        <h1>Systems</h1>
+      </div>
+      <div class="right">
+        <button class="btn" type="button" aria-disabled="true">EXPORT MANIFEST</button>
+        <button class="btn primary" type="button" aria-disabled="true">+ NEW SYSTEM</button>
+      </div>
+    </div>
+
+    <div class="fleetStats">
+      <div class="fs"><div class="k">Live in Prod</div><div class="v g">{live}</div><div class="t">▲ uptime 99.94%</div></div>
+      <div class="fs"><div class="k">Open Source</div><div class="v p">{oss}</div><div class="t">MIT · public</div></div>
+      <div class="fs"><div class="k">Public Repos</div><div class="v c">7</div><div class="t">github.com/Aquinas-Protocol</div></div>
+      <div class="fs"><div class="k">Last Commit</div><div class="v">recent</div><div class="t">see telemetry feed</div></div>
+    </div>
+
+    <div class="filterBar">
+      <span class="lbl">// FILTER</span>
+      <span class="fc act">ALL <b>{total}</b></span>
+      <span class="fc">LIVE <b>{live}</b></span>
+      <span class="fc">OSS <b>{oss}</b></span>
+      <span class="fc">VAULT <b>{vault}</b></span>
+      <span class="fc">ARCHIVED <b>0</b></span>
+      <input class="search" type="text" placeholder="search systems..." aria-label="Search systems (visual only)" />
+    </div>
+
+    <div class="fleet">
+      {systems.map((s) => <SystemCard system={s} />)}
+    </div>
+  </div>
+</BaseLayout>

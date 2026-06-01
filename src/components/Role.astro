@@ -1,0 +1,45 @@
+---
+import type { Role } from '../lib/content';
+interface Props {
+  role: Role;
+}
+const { role: r } = Astro.props;
+---
+<div class={`role ${r.current ? 'current' : ''}`}>
+  <div class="roleHead">
+    <div class="when">{r.when}<span class="dur">{r.dur}</span></div>
+    <div class="id">
+      <div class="title">{r.title}</div>
+      <div class="org" set:html={r.org}></div>
+      <div class="badges">{r.badges.map((b) => <span class={`badge ${b.cls}`}>{b.label}</span>)}</div>
+    </div>
+    <div class="stat">{r.stat.map((s) => <span>{s}</span>)}</div>
+  </div>
+  <div class="roleBody">
+    <div class="mission" set:html={r.mission}></div>
+    <div class="achievements">
+      {r.achievements.map((a) => (
+        <div class="ach"><div class={`metric ${a.metricCls}`}>{a.metric}</div><div class="desc" set:html={a.desc}></div></div>
+      ))}
+    </div>
+    {r.programs.length > 0 && (
+      <div class="programs">
+        <h5>// PROGRAMS BUILT</h5>
+        <ul>{r.programs.map((p) => <li set:html={p}></li>)}</ul>
+      </div>
+    )}
+    {r.tools.length > 0 && (
+      <div class="tools">
+        <h5>// TOOLS</h5>
+        <div class="chips">{r.tools.map((t) => <span class="chip">{t}</span>)}</div>
+      </div>
+    )}
+    {r.awards.length > 0 && (
+      <div class="awards">
+        {r.awards.map((a) => (
+          <div class="award"><div class="ribbon" aria-hidden="true"></div><div class="meta-aw" set:html={a.name}></div></div>
+        ))}
+      </div>
+    )}
+  </div>
+</div>

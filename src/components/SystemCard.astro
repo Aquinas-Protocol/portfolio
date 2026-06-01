@@ -1,0 +1,30 @@
+---
+import Sparkline from './Sparkline.astro';
+import { withBase } from '../lib/url';
+import type { System } from '../lib/content';
+
+interface Props {
+  system: System;
+}
+const { system: s } = Astro.props;
+const g = s.grid;
+---
+<a class="sysCard" href={withBase(`/systems/${s.slug}/`)}>
+  <div class="top">
+    <div>
+      <div class="meta">// {s.id} · {s.statusLabel}</div>
+      <h3>{s.name}</h3>
+    </div>
+    <span class={`badge ${s.badge.cls}`}>{s.badge.label}</span>
+  </div>
+  <div class="desc">{s.desc}</div>
+  <div class="telBox">
+    <div class="tHead"><span>{g.telHead}</span><span>{g.telRight}</span></div>
+    <Sparkline stroke={g.spark.stroke} points={g.spark.points} viewBox="0 0 100 36" />
+    <div class="val">{g.val} <span class="u">{g.unit}</span></div>
+  </div>
+  <div class="stack-mini">{g.stackMini.map((c) => <span class="chip">{c}</span>)}</div>
+  <div class="foot">
+    <span>{g.footLeft}</span><span class="open">OPEN →</span>
+  </div>
+</a>

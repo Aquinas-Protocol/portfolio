@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { systems } from '../../lib/content';
+import { withBase } from '../../lib/url';
+
+export function getStaticPaths() {
+  return systems.map((s) => ({ params: { slug: s.slug }, props: { system: s } }));
+}
+const { system: s } = Astro.props;
+const d = s.detail;
+---
+<BaseLayout title={`${s.name} — Systems — Dylan Palumbo`} description={s.desc} activeRoute="systems">
+  <div class="wrap" style="padding-top:36px;padding-bottom:64px">
+    <div class="crumb"><a href={withBase('/systems/')}>Systems</a><span>/</span>{s.name}</div>
+
+    <div class="detHero">
+      <div>
+        <div class="stampLine">{d.stamp}</div>
+        <h1>{s.name}</h1>
+        <div class="sub">{d.sub}</div>
+        <div class="meta">{d.metaBadges.map((b) => <span class={`badge ${b.cls}`}>{b.label}</span>)}</div>
+      </div>
+      <div class="right">
+        {d.repoUrl ? (
+          <a class="btn primary" href={d.repoUrl}>{d.repoLabel}</a>
+        ) : (
+          <span class="btn" aria-disabled="true">PRIVATE REPO</span>
+        )}
+        <a class="btn" href={`${withBase('/')}#live-telemetry`}>SEE LIVE LOG</a>
+      </div>
+    </div>
+
+    <div class="kpiRow">
+      {d.kpis.map((k) => (
+        <div class="kpi2"><div class="k">{k.k}</div><div class={`v ${k.vCls}`}>{k.v}</div><div class="t">{k.t}</div></div>
+      ))}
+    </div>
+
+    <div class="detLayout">
+      <main>
+        <div class="tabbar" role="tablist">
+          <button class="tab act" type="button" role="tab" aria-selected="true">OVERVIEW</button>
+          <button class="tab" type="button" aria-disabled="true">ARCHITECTURE</button>
+          <button class="tab" type="button" aria-disabled="true">TELEMETRY</button>
+          <button class="tab" type="button" aria-disabled="true">CODE</button>
+          <button class="tab" type="button" aria-disabled="true">SECURITY</button>
+        </div>
+        <div class="detPanel">
+          <h3>What it does</h3>
+          {d.paragraphs.map((p) => <p set:html={p}></p>)}
+          <div class="featureList">
+            {d.featureList.map((f) => (
+              <div class="f"><div class="ic"></div><div class="ftext"><div class="name">{f.name}</div><div class="d">{f.desc}</div></div></div>
+            ))}
+          </div>
+          <h3 style="margin-top:28px">Stack</h3>
+          <div class="stackMatrix">
+            {d.stackMatrix.map((sm) => <div class="sm"><div class="l">{sm.l}</div><div class="n">{sm.n}</div></div>)}
+          </div>
+        </div>
+      </main>
+
+      <aside class="sb">
+        {d.deps.length > 0 && (
+          <div class="sbBlock">
+            <h4>// DEPENDENCIES</h4>
+            <div class="depList">{d.deps.map((dep) => <div class="dep"><span>{dep.name}</span><b>{dep.ver}</b></div>)}</div>
+          </div>
+        )}
+        {d.commits.length > 0 && (
+          <div class="sbBlock">
+            <h4>// RECENT COMMITS</h4>
+            <div class="commitFeed">{d.commits.map((c) => <div class="c"><div class="h">{c.h}</div><div class="msg">{c.msg}</div><div class="t">{c.t}</div></div>)}</div>
+          </div>
+        )}
+        <div class="sbBlock">
+          <h4>// RELATED</h4>
+          <div class="related">
+            {d.related.map((r) => <a href={withBase(`/systems/${r.slug}/`)}>{r.name}<span>{r.meta}</span></a>)}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

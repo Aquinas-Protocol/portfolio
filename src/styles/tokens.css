@@ -1,0 +1,32 @@
+/* Design tokens — ported verbatim from portfolio-reference.html (lines 14-21). */
+:root {
+  /* surfaces */
+  --bg: #07090f;
+  --bg-2: #0c0f17;
+  --panel: #11151f;
+  --panel-2: #161b28;
+  --panel-3: #1c2232;
+
+  /* borders */
+  --border: #202637;
+  --border-2: #2a3147;
+
+  /* text */
+  --text: #e8eaef;
+  --muted: #8089a0;
+  --dim: #5a6178;
+  --faint: #3a4055;
+
+  /* accents */
+  --purple: #9d7cff;
+  --purple-2: #c7b3ff;
+  --purple-dim: #5a4aa0;
+  --cyan: #4ddbe6;
+  --cyan-2: #9eecf2;
+  --green: #5ee892;
+  --amber: #ffb44d;
+  --red: #ff6b6b;
+  --pink: #ff7fb3;
+
+  --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, Consolas, monospace;
+}

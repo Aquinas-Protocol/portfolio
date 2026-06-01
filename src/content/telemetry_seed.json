@@ -1,0 +1,14 @@
+{
+  "events": [
+    { "ts": "—", "src": "github", "cls": "g", "msg": "domo · released v0.1.0 · MIT" },
+    { "ts": "06:00", "src": "cron", "cls": "p", "msg": "daily pipeline → ok" },
+    { "ts": "—", "src": "github", "cls": "c", "msg": "workout-app · push gh-pages" },
+    { "ts": "03:00", "src": "cron", "cls": "p", "msg": "memory-consolidate → ok" },
+    { "ts": "—", "src": "github", "cls": "g", "msg": "second-brain · push main" },
+    { "ts": "22:00", "src": "cron", "cls": "a", "msg": "research-brief → queued" },
+    { "ts": "—", "src": "github", "cls": "c", "msg": "domo · new branch main" },
+    { "ts": "12:00", "src": "cron", "cls": "p", "msg": "standup → ok" },
+    { "ts": "—", "src": "build", "cls": "g", "msg": "portfolio · deploy → ok" },
+    { "ts": "18:00", "src": "cron", "cls": "p", "msg": "health-check → ok" }
+  ]
+}
