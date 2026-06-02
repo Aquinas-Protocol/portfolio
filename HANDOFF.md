@@ -1,13 +1,22 @@
 # Portfolio — Handoff
 
-_Last updated: 2026-06-01. Owner: Dylan Palumbo. This doc lets a fresh instance pick up cold._
+_Last updated: 2026-06-02. Owner: Dylan Palumbo. This doc lets a fresh instance pick up cold._
 
 ## TL;DR
 
 A recruiter-facing "Live Telemetry" Mission Control portfolio. **Built, deployed, and live** at
-**https://portfolio.machina-infastructure.workers.dev/**. Source: **https://github.com/Aquinas-Protocol/portfolio** (public, branch `main`). Local working copy: `C:\Users\Artemis\Documents\projects\portfolio-site` (NOT in the second-brain vault).
+**https://dylan-palumbo.com/** — custom domain (also `portfolio.machina-infastructure.workers.dev`). Source: **https://github.com/Aquinas-Protocol/portfolio** (public, branch `main`). Local working copy: `C:\Users\Artemis\Documents\projects\portfolio-site` (NOT in the second-brain vault).
 
 Spec lineage: `second-brain/portfolio-prd.md` (the PRD) + `second-brain/portfolio-reference.html` (the pixel ground-truth mock). Implementation plan: `~/.claude/plans/c-users-artemis-documents-second-brain-fancy-pixel.md`.
+
+## 2026-06-02 — custom domain live
+
+**`dylan-palumbo.com` is now the production custom domain.** Registered at **GoDaddy**, DNS delegated to **Cloudflare** (full setup; nameservers `jaziel.ns.cloudflare.com` / `sara.ns.cloudflare.com`; zone on the `Machina.infastructure@gmail.com` account, Zone ID `5e12ae5e748eee6a8c80fb5dd7c7c031`). Registration stays at GoDaddy — only DNS moved.
+
+- **Apex** `dylan-palumbo.com` → attached as a **Custom Domain** on the `portfolio` Worker (Cloudflare auto-created the proxied record + edge cert). Serves the site; `/api/telemetry.json` verified working on it.
+- **`www`** → **301 → apex**, path + query preserved, via a **Redirect Rule** (Rules → Redirect Rules: wildcard `https://www.dylan-palumbo.com/*` → `https://dylan-palumbo.com/${1}`, 301) backed by a **proxied `www` DNS record**.
+- **Always Use HTTPS:** ON. `site` in `astro.config.mjs` = `https://dylan-palumbo.com` (commit `8fb8004`) → canonical/OG resolve to the custom domain.
+- **Gotcha:** the Worker's **"Connect domain" / Add Custom Domain dialog kept throwing a spurious "No zones found"** even with the zone active. The reliable `www` route was the **zone's DNS tab (proxied CNAME) + a Redirect Rule** — NOT the Worker dialog. (A fresh tab also re-triggers Cloudflare's cookie-consent gate, which blocks the dashboard from rendering until dismissed.)
 
 ## 2026-06-01 — session update (supersedes the older "Open / remaining work" items below)
 
@@ -44,7 +53,7 @@ Shipped the remaining polish to all-green:
 
 ## Open / remaining work
 
-1. **Custom domain (owner chose this).** Owner wants a custom domain (e.g. `dylanpalumbo.dev`) but hasn't picked/acquired one yet. Path: buy via Cloudflare Registrar (at-cost) or connect an owned domain → in the dashboard, Worker → **Settings → Domains & Routes → Add custom domain** → then update `site` in `astro.config.mjs` (currently the placeholder `https://portfolio.workers.dev`) and push (fixes canonical/OG). `base` stays `/`.
+1. **Custom domain — DONE (2026-06-02):** `dylan-palumbo.com` is live (apex + `www`→apex 301 + Always Use HTTPS). See the **2026-06-02** section near the top. `base` stays `/`.
 2. **`public/og-default.png`** (1200×630 social-share image) — referenced in `<head>` but not authored. A screenshot of the hero works.
 3. **"Left button tree does not scroll" (UNRESOLVED).** Owner reported this but it's not in `portfolio-reference.html` (the canonical mock we built from) — likely a `portfolio-c-v2.html` concept element. Needs the owner to point at which page/element, or confirm it's a scope-add.
 4. **Hero copy just changed (deploying):** reframed from "shipping discord-ops" to "I run discord-ops … shipped its open-source core as Domo (MIT)" — option #1 of a discord-ops-vs-Domo canon discussion. The owner leaned toward keeping discord-ops as the flagship with Domo as the honest "shipped OSS" framing. If they later want to promote Domo to SYS-001/flagship (option #2), that's a `systems.json` + hero edit.
