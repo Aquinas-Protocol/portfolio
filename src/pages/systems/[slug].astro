@@ -37,44 +37,44 @@ const d = s.detail;
     </div>
 
     <div class="detLayout">
-      <main>
+      <div>
         <div class="tabbar" role="tablist">
           <button class="tab act" type="button" role="tab" aria-selected="true">OVERVIEW</button>
-          <button class="tab" type="button" aria-disabled="true">ARCHITECTURE</button>
-          <button class="tab" type="button" aria-disabled="true">TELEMETRY</button>
-          <button class="tab" type="button" aria-disabled="true">CODE</button>
-          <button class="tab" type="button" aria-disabled="true">SECURITY</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-disabled="true">ARCHITECTURE</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-disabled="true">TELEMETRY</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-disabled="true">CODE</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-disabled="true">SECURITY</button>
         </div>
         <div class="detPanel">
-          <h3>What it does</h3>
+          <h2>What it does</h2>
           {d.paragraphs.map((p) => <p set:html={p}></p>)}
           <div class="featureList">
             {d.featureList.map((f) => (
               <div class="f"><div class="ic"></div><div class="ftext"><div class="name">{f.name}</div><div class="d">{f.desc}</div></div></div>
             ))}
           </div>
-          <h3 style="margin-top:28px">Stack</h3>
+          <h2 style="margin-top:28px">Stack</h2>
           <div class="stackMatrix">
             {d.stackMatrix.map((sm) => <div class="sm"><div class="l">{sm.l}</div><div class="n">{sm.n}</div></div>)}
           </div>
         </div>
-      </main>
+      </div>
 
       <aside class="sb">
         {d.deps.length > 0 && (
           <div class="sbBlock">
-            <h4>// DEPENDENCIES</h4>
+            <h3>// DEPENDENCIES</h3>
             <div class="depList">{d.deps.map((dep) => <div class="dep"><span>{dep.name}</span><b>{dep.ver}</b></div>)}</div>
           </div>
         )}
         {d.commits.length > 0 && (
           <div class="sbBlock">
-            <h4>// RECENT COMMITS</h4>
+            <h3>// RECENT COMMITS</h3>
             <div class="commitFeed">{d.commits.map((c) => <div class="c"><div class="h">{c.h}</div><div class="msg">{c.msg}</div><div class="t">{c.t}</div></div>)}</div>
           </div>
         )}
         <div class="sbBlock">
-          <h4>// RELATED</h4>
+          <h3>// RELATED</h3>
           <div class="related">
             {d.related.map((r) => <a href={withBase(`/systems/${r.slug}/`)}>{r.name}<span>{r.meta}</span></a>)}
           </div>

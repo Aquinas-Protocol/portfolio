@@ -32,7 +32,7 @@ const cm = profile.contactMeta;
 
     <div class="bottomGrid">
       <div class="quickForm">
-        <h3>// QUICK MESSAGE</h3>
+        <h2>// QUICK MESSAGE</h2>
         <div class="sub">For when none of the channels above fit. Async — I'll read it within 24 hours.</div>
         <form action={`mailto:${profile.handles.email}`} method="post" enctype="text/plain">
           <div class="qf"><label for="qfFrom">NAME · EMAIL</label><input id="qfFrom" name="from" type="text" /></div>
@@ -42,7 +42,7 @@ const cm = profile.contactMeta;
       </div>
 
       <div class="availPanel">
-        <h3>AVAILABILITY · OPEN</h3>
+        <h2>AVAILABILITY · OPEN</h2>
         <div class="big">Open to <span class="grad">senior IC roles</span><br>in AI infra, platform, SRE.</div>
         <div class="meta" set:html={`LOCATION · <b>${a.location}</b><br>ENGAGEMENT · <b>${a.engagement}</b><br>EARLIEST START · <b class="acc">${a.earliestStart}</b><br>CONTRACT · <b>${a.contract}</b><br>VISA · <b>${a.visa}</b>`}></div>
         <div>

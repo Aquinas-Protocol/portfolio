@@ -24,13 +24,13 @@ const { role: r } = Astro.props;
     </div>
     {r.programs.length > 0 && (
       <div class="programs">
-        <h5>// PROGRAMS BUILT</h5>
+        <h2>// PROGRAMS BUILT</h2>
         <ul>{r.programs.map((p) => <li set:html={p}></li>)}</ul>
       </div>
     )}
     {r.tools.length > 0 && (
       <div class="tools">
-        <h5>// TOOLS</h5>
+        <h2>// TOOLS</h2>
         <div class="chips">{r.tools.map((t) => <span class="chip">{t}</span>)}</div>
       </div>
     )}
