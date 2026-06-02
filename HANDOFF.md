@@ -18,6 +18,10 @@ Spec lineage: `second-brain/portfolio-prd.md` (the PRD) + `second-brain/portfoli
 - **Always Use HTTPS:** ON. `site` in `astro.config.mjs` = `https://dylan-palumbo.com` (commit `8fb8004`) → canonical/OG resolve to the custom domain.
 - **Gotcha:** the Worker's **"Connect domain" / Add Custom Domain dialog kept throwing a spurious "No zones found"** even with the zone active. The reliable `www` route was the **zone's DNS tab (proxied CNAME) + a Redirect Rule** — NOT the Worker dialog. (A fresh tab also re-triggers Cloudflare's cookie-consent gate, which blocks the dashboard from rendering until dismissed.)
 
+## 2026-06-02 — EOS reframed as a completed role
+
+EOS is presented as a **past** role everywhere: hero "Most recently Regional Ops IT Manager (AMER) at EOS IT Solutions"; `/experience` entry is `current:false` with dates `2025.08 → 2026.05` (no "CURRENT" badge/pulse, past-tense mission); homepage card badge `2025–26`, header `AUG 2025 – MAY 2026`, "Led regional…". **Metrics kept** (earned achievements). **Framed neutrally — no separation details on the public site or in this repo;** the private context for why the role ended lives only in the second-brain vault (`wiki/projects/eos-separation.md`, not committed here) and respects a one-way non-disparagement clause. **Don't re-introduce "CURRENT"/"PRESENT" for EOS.** Separately, the homepage **Domo** and **second-brain** cards are now whole-card links to their public repos.
+
 ## 2026-06-01 — session update (supersedes the older "Open / remaining work" items below)
 
 Shipped the remaining polish to all-green:
