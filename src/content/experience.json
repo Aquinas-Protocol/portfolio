@@ -1,15 +1,14 @@
 [
   {
-    "when": "2025.08 → PRESENT", "dur": "10 MONTHS · CURRENT", "current": true,
+    "when": "2025.08 → 2026.05", "dur": "10 MONTHS", "current": false,
     "title": "Regional Operations IT Manager — AMER",
     "org": "<b>EOS IT Solutions</b> · United States · Remote",
     "badges": [
-      { "label": "CURRENT", "cls": "live" },
       { "label": "SLA OPS", "cls": "pur" },
       { "label": "MSP MGMT", "cls": "cy" }
     ],
     "stat": ["SCALE · 12,838 USERS", "SPAN · 3 COUNTRIES", "REPORTS · 13 MSP"],
-    "mission": "Direct regional IT service delivery and asset management across AMER through an MSP partnership — <em>own the SLA, build the tooling under it, scale the people running it.</em>",
+    "mission": "Directed regional IT service delivery and asset management across AMER through an MSP partnership — <em>owned the SLA, built the tooling under it, scaled the people running it.</em>",
     "achievements": [
       { "metric": "95.3%", "metricCls": "g", "desc": "<b>CSAT</b> across ~1,970 tickets/mo, multi-timezone (17,718 tickets / 9 months)" },
       { "metric": "98.6%", "metricCls": "g", "desc": "<b>TTFR SLA</b> achieved through structured operational checklists + service-desk governance standards" },
