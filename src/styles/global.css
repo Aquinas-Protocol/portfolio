@@ -83,28 +83,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .ovw .hero .quickmeta { margin-top: 36px; display: flex; gap: 28px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .12em; }
 .ovw .hero .quickmeta span b { color: var(--cyan); font-weight: 500; }
 
-.opCard { position: relative; background: linear-gradient(180deg, var(--panel-2), var(--panel)); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: 0 32px 80px rgba(0,0,0,.55), 0 0 60px rgba(157,124,255,.08), inset 0 1px 0 rgba(255,255,255,.04); overflow: hidden; }
-.opCard::before { content: ""; position: absolute; inset: -1px; border-radius: 16px; padding: 1px; background: linear-gradient(135deg, rgba(157,124,255,.4), transparent 40%, transparent 60%, rgba(77,219,230,.3)); -webkit-mask: linear-gradient(#000,#000) content-box, linear-gradient(#000,#000); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
-.opCard .opHead { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .18em; margin-bottom: 18px; }
-.opCard .opPortrait { width: 100%; aspect-ratio: 1.4/1; border-radius: 10px; background: radial-gradient(circle at 50% 30%, #3a335a 0 6%, transparent 9%), radial-gradient(ellipse at 50% 80%, #2a2440 0 30%, transparent 32%), linear-gradient(180deg, #1a1d2c, #0b0d15); border: 1px solid var(--border-2); position: relative; overflow: hidden; }
-.opCard .opPortrait::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 32%, rgba(199,179,255,.35) 0 12%, transparent 18%), radial-gradient(ellipse at 50% 78%, rgba(157,124,255,.18) 0 28%, transparent 35%); }
-.opCard .opPortrait::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,.18) 3px 4px); mix-blend-mode: multiply; }
-.opCard .corners { position: absolute; inset: 8px; pointer-events: none; }
-.opCard .corners::before, .opCard .corners::after, .opCard .corners > i::before, .opCard .corners > i::after { content: ""; position: absolute; width: 18px; height: 18px; border: 1px solid var(--cyan); opacity: .6; }
-.opCard .corners::before { top: 0; left: 0; border-right: none; border-bottom: none; }
-.opCard .corners::after { top: 0; right: 0; border-left: none; border-bottom: none; }
-.opCard .corners > i { position: absolute; inset: 0; }
-.opCard .corners > i::before { bottom: 0; left: 0; border-right: none; border-top: none; }
-.opCard .corners > i::after { bottom: 0; right: 0; border-left: none; border-top: none; }
-.opMeta { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.opMeta .cell { background: rgba(0,0,0,.25); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
-.opMeta .k { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: .16em; text-transform: uppercase; }
-.opMeta .v { font-size: 14px; font-weight: 600; margin-top: 4px; color: var(--text); }
-.opMeta .v.acc { color: var(--cyan); } .opMeta .v.gn { color: var(--green); }
-.statusBar { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(94,232,146,.06); border: 1px solid rgba(94,232,146,.25); border-radius: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--green); }
-.statusBar .live { display: flex; align-items: center; gap: 8px; }
-
-/* Floating operator cluster — head-and-shoulders figure with stats clustered around it (replaces opCard in the hero). */
+/* Floating operator cluster — head-and-shoulders figure with stats clustered around it (replaces the former opCard in the hero). */
 .ovw .opCluster { position: relative; min-height: 560px; }
 .ovw .opCluster .ocHead { position: absolute; top: 0; left: 6px; right: 6px; z-index: 3; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .16em; }
 .ovw .opCluster .ocFig { position: absolute; left: 50%; top: 46px; transform: translateX(-50%); width: 330px; max-width: 62%; z-index: 1; }
