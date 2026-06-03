@@ -71,7 +71,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* ===================================================================== OVERVIEW (/) */
-.ovw .hero { padding: 72px 0 48px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; align-items: center; }
+.ovw .hero { padding: 72px 0 48px; display: grid; grid-template-columns: 1fr 1.08fr; gap: 56px; align-items: center; }
 .ovw .hero .stamp { font-family: var(--mono); font-size: 11px; color: var(--purple); letter-spacing: .22em; margin-bottom: 18px; display: inline-flex; align-items: center; gap: 10px; }
 .ovw .hero .stamp::before { content: ""; width: 24px; height: 1px; background: var(--purple); }
 .ovw .hero h1 { font-size: 72px; line-height: 1.02; letter-spacing: -.035em; font-weight: 600; }
@@ -103,6 +103,24 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .opMeta .v.acc { color: var(--cyan); } .opMeta .v.gn { color: var(--green); }
 .statusBar { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(94,232,146,.06); border: 1px solid rgba(94,232,146,.25); border-radius: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--green); }
 .statusBar .live { display: flex; align-items: center; gap: 8px; }
+
+/* Floating operator cluster — head-and-shoulders figure with stats clustered around it (replaces opCard in the hero). */
+.ovw .opCluster { position: relative; min-height: 560px; }
+.ovw .opCluster .ocHead { position: absolute; top: 0; left: 6px; right: 6px; z-index: 3; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .16em; }
+.ovw .opCluster .ocFig { position: absolute; left: 50%; top: 46px; transform: translateX(-50%); width: 330px; max-width: 62%; z-index: 1; }
+.ovw .opCluster .ocFig .glow { position: absolute; left: 50%; top: 40%; transform: translate(-50%,-50%); width: 330px; height: 330px; border-radius: 50%; background: radial-gradient(circle, rgba(157,124,255,.26), rgba(77,219,230,.10) 45%, transparent 70%); filter: blur(8px); z-index: 0; }
+.ovw .opCluster .ocFig img { position: relative; z-index: 1; width: 100%; height: auto; display: block; filter: drop-shadow(0 0 1px rgba(232,234,239,.28)); }
+.ovw .opCluster .ocCells { position: absolute; inset: 0; z-index: 2; }
+.ovw .opCluster .ocCell { position: absolute; width: 140px; background: rgba(9,12,19,.62); border: 1px solid var(--border-2); border-radius: 9px; padding: 9px 11px; backdrop-filter: blur(6px); box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+.ovw .opCluster .ocCell .k { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: .16em; text-transform: uppercase; }
+.ovw .opCluster .ocCell .v { font-size: 13px; font-weight: 600; margin-top: 3px; color: var(--text); line-height: 1.25; }
+.ovw .opCluster .ocCell .v.acc { color: var(--cyan); } .ovw .opCluster .ocCell .v.gn { color: var(--green); }
+.ovw .opCluster .ocCell.tl { top: 86px; left: 0; } .ovw .opCluster .ocCell.bl { bottom: 70px; left: 0; }
+.ovw .opCluster .ocCell.tr { top: 86px; right: 0; text-align: right; } .ovw .opCluster .ocCell.br { bottom: 70px; right: 0; text-align: right; }
+.ovw .opCluster .ocCell.tl::after, .ovw .opCluster .ocCell.bl::after { content: ""; position: absolute; right: -13px; top: 50%; width: 11px; height: 1px; background: linear-gradient(90deg, var(--cyan), transparent); opacity: .55; }
+.ovw .opCluster .ocCell.tr::after, .ovw .opCluster .ocCell.br::after { content: ""; position: absolute; left: -13px; top: 50%; width: 11px; height: 1px; background: linear-gradient(270deg, var(--cyan), transparent); opacity: .55; }
+.ovw .opCluster .ocStatus { position: absolute; bottom: 0; left: 6px; right: 6px; z-index: 3; display: flex; justify-content: space-between; align-items: center; padding: 9px 13px; background: rgba(94,232,146,.06); border: 1px solid rgba(94,232,146,.25); border-radius: 8px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; color: var(--green); }
+.ovw .opCluster .ocStatus .live { display: flex; align-items: center; gap: 7px; }
 
 .ovw .strip { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; padding: 0 0 16px; }
 .kpi { position: relative; background: linear-gradient(180deg, var(--panel), var(--bg-2)); border: 1px solid var(--border); border-radius: 12px; padding: 18px; overflow: hidden; }
@@ -410,6 +428,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 1100px) {
   .ovw .hero { grid-template-columns: 1fr; gap: 36px; }
   .ovw .hero h1 { font-size: 54px; }
+  /* Floating operator cluster → stack on narrow screens (figure, then 2×2 stats). */
+  .ovw .opCluster { position: static; min-height: 0; max-width: 460px; margin: 8px auto 0; }
+  .ovw .opCluster .ocHead { position: static; margin-bottom: 12px; }
+  .ovw .opCluster .ocFig { position: static; transform: none; width: 260px; max-width: 70%; margin: 0 auto 16px; }
+  .ovw .opCluster .ocFig .glow { width: 260px; height: 260px; }
+  .ovw .opCluster .ocCells { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ovw .opCluster .ocCell { position: static; width: auto; }
+  .ovw .opCluster .ocCell.tr, .ovw .opCluster .ocCell.br { text-align: left; }
+  .ovw .opCluster .ocCell::after { display: none; }
+  .ovw .opCluster .ocStatus { position: static; margin-top: 12px; }
   .ovw .strip { grid-template-columns: repeat(3,1fr); }
   .feature { grid-template-columns: 1fr; }
   .pGrid { grid-template-columns: 1fr 1fr; }

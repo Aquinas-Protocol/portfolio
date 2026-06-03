@@ -47,19 +47,24 @@ const chat = [
         </div>
       </div>
 
-      <aside class="opCard">
-        <div class="opHead"><span>{op.fileNo}</span><span>{op.idCode}</span></div>
-        <div class="opPortrait"><div class="corners"><i></i></div></div>
-        <div class="opMeta">
-          {op.cells.map((c) => (
-            <div class="cell"><div class="k">{c.k}</div><div class={`v ${c.tone ?? ''}`}>{c.v}</div></div>
+      <div class="opCluster">
+        <div class="ocHead"><span>{op.fileNo}</span><span>{op.idCode}</span></div>
+        <div class="ocFig">
+          <div class="glow" aria-hidden="true"></div>
+          <img src={withBase('headshot-cutout.webp')} alt="Dylan Palumbo — headshot" width="1179" height="1200" loading="eager" fetchpriority="high" decoding="async" />
+        </div>
+        <div class="ocCells">
+          {op.cells.map((c, i) => (
+            <div class={`ocCell ${['tl','tr','bl','br'][i]}`}>
+              <div class="k">{c.k}</div><div class={`v ${c.tone ?? ''}`}>{c.v}</div>
+            </div>
           ))}
         </div>
-        <div class="statusBar">
+        <div class="ocStatus">
           <span class="live"><span class="dot" aria-hidden="true"></span>{op.statusLeft}</span>
           <span>{op.statusRight}</span>
         </div>
-      </aside>
+      </div>
     </section>
 
     <!-- KPI STRIP -->
