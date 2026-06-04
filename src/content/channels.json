@@ -26,8 +26,8 @@
   {
     "icon": "⌘", "iconClass": "pk", "name": "Discord", "handle": "@aquinas · DMs open",
     "best": "Best for <b>technical chat, agent infra talk, casual back-and-forth</b>.",
-    "badge": "CASUAL", "badgeClass": "pur", "rt": "RT · 1-3d", "action": "EXAMPLE",
-    "href": null, "live": false
+    "badge": "CASUAL", "badgeClass": "pur", "rt": "RT · 1-3d", "action": "COMING SOON",
+    "href": null, "live": false, "comingSoon": true
   },
   {
     "icon": "↧", "iconClass": "cy", "name": "Resume · PDF", "handle": "/resume.pdf · 2 pages",

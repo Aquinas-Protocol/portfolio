@@ -11,8 +11,9 @@ const { ch } = Astro.props;
 // div so recruiters never hit a dead link.
 const href = ch.href ? (/^[a-z]+:/i.test(ch.href) ? ch.href : withBase(ch.href)) : null;
 const Tag = href ? 'a' : 'div';
+const isSoon = ch.comingSoon === true;
 ---
-<Tag class="freq" {...(href ? { href } : { 'aria-disabled': 'true' })}>
+<Tag class={`freq${isSoon ? ' soon' : ''}`} {...(href ? { href } : { 'aria-disabled': 'true' })}>
   <div class="ftop">
     <div class={`ico ${ch.iconClass}`} aria-hidden="true">{ch.icon}</div>
     <span class={`badge ${ch.badgeClass}`}>{ch.badge}</span>
@@ -26,4 +27,7 @@ const Tag = href ? 'a' : 'div';
     <span class="rt" set:html={ch.rt}></span>
     <span class="open">{ch.action}</span>
   </div>
+  {isSoon && (
+    <div class="soonOverlay"><span class="soonTag">Coming Soon</span></div>
+  )}
 </Tag>

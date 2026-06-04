@@ -376,6 +376,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .freq .ftMeta .rt::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s ease-in-out infinite; }
 .freq .ftMeta .open { color: var(--purple-2); }
 
+/* Coming-soon channel: grayed-out tile with a centered overlay chip (grayscale backdrop keeps the chip crisp). */
+.freq.soon:hover { transform: none; border-color: var(--border); box-shadow: none; }
+.freq.soon .soonOverlay { position: absolute; inset: 0; z-index: 4; border-radius: inherit; display: flex; align-items: center; justify-content: center; background: rgba(7,9,15,.34); -webkit-backdrop-filter: grayscale(.95) brightness(.72); backdrop-filter: grayscale(.95) brightness(.72); }
+.freq.soon .soonTag { font-family: var(--mono); font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--text); padding: 9px 16px; border-radius: 999px; border: 1px solid var(--border-2); background: rgba(17,21,31,.92); box-shadow: 0 10px 30px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.03); }
+
 .bottomGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .quickForm { background: linear-gradient(180deg, var(--panel-2), var(--panel)); border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; position: relative; overflow: hidden; }
 .quickForm::before { content: ""; position: absolute; top: 0; left: 24px; right: 24px; height: 1px; background: linear-gradient(90deg, transparent, var(--purple), transparent); opacity: .4; }

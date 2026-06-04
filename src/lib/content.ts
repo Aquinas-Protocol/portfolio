@@ -110,6 +110,7 @@ const ChannelSchema = z.object({
   action: z.string(),
   href: z.string().nullable(),
   live: z.boolean(),
+  comingSoon: z.boolean().optional(),
 });
 
 const SeedSchema = z.object({
