@@ -18,10 +18,10 @@
     "href": "https://github.com/Aquinas-Protocol", "live": true
   },
   {
-    "icon": "▦", "iconClass": "am", "name": "Calendar Booking", "handle": "cal.com/dylan-palumbo",
+    "icon": "▦", "iconClass": "am", "name": "Calendar Booking", "handle": "calendly.com/machina-infastructure",
     "best": "Best for <b>30-min intro calls, technical deep-dives</b>. Self-serve booking.",
-    "badge": "SCHEDULED", "badgeClass": "am", "rt": "SLOTS · 3 / WK", "action": "EXAMPLE",
-    "href": null, "live": false
+    "badge": "SCHEDULED", "badgeClass": "am", "rt": "30 MIN · INTRO", "action": "BOOK →",
+    "href": "https://calendly.com/machina-infastructure/30min", "live": true
   },
   {
     "icon": "⌘", "iconClass": "pk", "name": "Discord", "handle": "@aquinas · DMs open",
