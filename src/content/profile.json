@@ -40,7 +40,6 @@
     "lede": "Six ways to reach me, each tuned for a different kind of conversation. Pick the channel that matches your intent — async or sync, formal or casual, recruiter or peer.",
     "allChannels": "ACTIVE",
     "fastest": "EMAIL · &lt;24h",
-    "slowest": "DISCORD · 1-3d",
     "bestFirst": "EMAIL or LINKEDIN"
   },
   "footer": {

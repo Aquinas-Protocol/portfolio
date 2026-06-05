@@ -41,7 +41,7 @@ const ProfileSchema = z.object({
     visa: z.string(),
     targetTags: z.array(z.string()),
   }),
-  contactMeta: z.object({ stamp: z.string(), lede: z.string(), allChannels: z.string(), fastest: z.string(), slowest: z.string(), bestFirst: z.string() }),
+  contactMeta: z.object({ stamp: z.string(), lede: z.string(), allChannels: z.string(), fastest: z.string(), bestFirst: z.string() }),
   footer: z.object({ sig: z.string(), rightSig: z.string() }),
   handles: z.object({ email: z.string(), github: z.string(), githubLabel: z.string(), linkedin: z.string(), linkedinLabel: z.string(), resume: z.string() }),
 });
