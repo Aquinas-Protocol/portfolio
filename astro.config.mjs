@@ -20,6 +20,11 @@ export default defineConfig({
   output: 'static',
   integrations: [react()],
 
+  // Disable Shiki: the writing section's code blocks are styled by `.prose pre` in global.css to
+  // match the site theme. Shiki's inline styles would otherwise override that. Re-enable (and pick a
+  // theme) if a future post needs token-level syntax highlighting.
+  markdown: { syntaxHighlight: false },
+
   vite: {
     plugins: [tailwindcss()],
     // React 19 + Vite 7: pre-bundle the JSX runtimes so `jsxDEV` resolves in `astro dev`.

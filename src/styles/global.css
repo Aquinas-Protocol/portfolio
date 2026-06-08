@@ -408,6 +408,44 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* ===================================================================== TBD placeholder (writing, detail tabs) */
 .tbd { font-family: var(--mono); font-size: 12px; color: var(--dim); letter-spacing: .18em; text-transform: uppercase; padding: 64px 24px; text-align: center; border: 1px dashed var(--border-2); border-radius: 10px; }
 
+/* ===================================================================== WRITING (/writing, /writing/:slug) */
+.writingList { margin-top: 44px; display: flex; flex-direction: column; }
+.postRow { display: grid; grid-template-columns: 132px 1fr auto; gap: 26px; align-items: center; padding: 24px 20px; border-top: 1px solid var(--border); border-radius: 10px; text-decoration: none; color: inherit; transition: .18s; }
+.postRow:last-child { border-bottom: 1px solid var(--border); }
+.postRow:hover { background: rgba(157,124,255,.045); box-shadow: inset 0 0 0 1px var(--purple-dim); }
+.postRow .pDate { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: .12em; }
+.postRow h2 { font-size: 22px; font-weight: 600; letter-spacing: -.015em; }
+.postRow .pSub { font-size: 13.5px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+.postRow .pTags { margin-top: 13px; display: flex; flex-wrap: wrap; gap: 6px; }
+.postRow .pArrow { font-family: var(--mono); font-size: 18px; color: var(--purple-2); opacity: .55; transition: .18s; }
+.postRow:hover .pArrow { opacity: 1; transform: translateX(3px); }
+
+.postHead { padding-bottom: 26px; border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+.postHead h1 { font-size: 42px; font-weight: 600; letter-spacing: -.03em; line-height: 1.08; margin-top: 6px; }
+.postHead .postSub { color: var(--muted); font-size: 17px; margin-top: 14px; max-width: 720px; line-height: 1.5; }
+.postHead .postTags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Rendered Markdown body (src/content/writing/*.md → <Content />). Styles target raw markdown
+   output, so they live here (global) rather than in a scoped component <style>. */
+.prose { max-width: 760px; font-size: 16px; line-height: 1.75; color: var(--text); }
+.prose > * + * { margin-top: 20px; }
+.prose h2 { font-size: 25px; font-weight: 600; letter-spacing: -.02em; margin-top: 54px; padding-top: 22px; border-top: 1px solid var(--border); }
+.prose h3 { font-size: 18px; font-weight: 600; letter-spacing: -.01em; margin-top: 36px; color: var(--purple-2); }
+.prose p { color: var(--text); }
+.prose a { color: var(--purple-2); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--purple-dim); }
+.prose a:hover { text-decoration-color: var(--purple-2); }
+.prose strong { color: var(--text); font-weight: 600; }
+.prose em { font-style: italic; }
+.prose ul, .prose ol { padding-left: 26px; }
+.prose li + li { margin-top: 8px; }
+.prose li::marker { color: var(--purple); }
+.prose blockquote { border-left: 2px solid var(--purple); background: rgba(157,124,255,.05); padding: 14px 20px; border-radius: 0 8px 8px 0; }
+.prose blockquote p { color: var(--muted); }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 48px 0; }
+.prose code { font-family: var(--mono); font-size: .87em; background: rgba(255,255,255,.045); border: 1px solid var(--border); border-radius: 5px; padding: 1.5px 6px; color: var(--cyan-2); }
+.prose pre { background: #06080d; border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; overflow-x: auto; }
+.prose pre code { background: none; border: 0; padding: 0; font-size: 13px; line-height: 1.7; color: var(--text); }
+
 /* ===================================================================== RESPONSIVE */
 @media (max-width: 1100px) {
   .ovw .hero { grid-template-columns: 1fr; gap: 36px; }
@@ -439,4 +477,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .ovw .strip, .freqGrid, .pGrid { grid-template-columns: 1fr; }
   .ovw .hero h1 { font-size: 42px; }
   .council { grid-template-columns: 1fr; }
+  .postRow { grid-template-columns: 1fr; gap: 10px; padding: 20px 4px; }
+  .postRow .pArrow { display: none; }
+  .postHead h1 { font-size: 32px; }
+  .prose { font-size: 15.5px; }
+  .prose h2 { font-size: 22px; }
 }

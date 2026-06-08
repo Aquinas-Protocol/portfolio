@@ -1,18 +1,38 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { withBase } from '../lib/url';
+
+const posts = (await getCollection('writing'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
 <BaseLayout
   title="Writing — Dylan Palumbo"
-  description="Long-form notes on agent infrastructure, reliability engineering, and shipping production systems — coming soon."
+  description="Long-form notes on agent infrastructure, security, reliability engineering, and shipping production systems."
   activeRoute="writing"
 >
   <div class="wrap" style="padding-top:36px;padding-bottom:120px">
     <div class="stampLine">// WRITING</div>
-    <h1 class="pageTitle">Notes, <span class="grad">soon.</span></h1>
+    <h1 class="pageTitle">Notes<span class="grad">.</span></h1>
     <div class="ledeText">
-      Long-form notes on agent infrastructure, reliability engineering, and shipping production systems are in the
-      pipeline. When they land, this becomes an MDX-driven index.
+      Long-form notes on agent infrastructure, security, reliability engineering, and shipping production systems.
     </div>
-    <div class="tbd" style="margin-top:36px">// TBD · COMING SOON</div>
+
+    <div class="writingList">
+      {posts.map((p) => (
+        <a class="postRow" href={withBase(`/writing/${p.id}/`)}>
+          <div class="pDate">{fmt(p.data.date)}</div>
+          <div class="pMain">
+            <h2>{p.data.title}</h2>
+            {p.data.subtitle && <div class="pSub">{p.data.subtitle}</div>}
+            <div class="pTags">{p.data.tags.map((t) => <span class="chip">{t}</span>)}</div>
+          </div>
+          <div class="pArrow" aria-hidden="true">→</div>
+        </a>
+      ))}
+    </div>
   </div>
 </BaseLayout>
