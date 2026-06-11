@@ -266,9 +266,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .tabbar .tab { padding: 14px 20px; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .14em; cursor: pointer; text-transform: uppercase; border-right: 1px solid var(--border); background: none; }
 .tabbar .tab.act { color: var(--text); background: var(--panel-2); box-shadow: inset 0 2px 0 var(--purple); }
 .detPanel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
+.detPanel[hidden] { display: none; }
 .detPanel h2 { font-size: 18px; font-weight: 600; margin-bottom: 10px; letter-spacing: -.01em; }
 .detPanel p { color: var(--muted); font-size: 14px; line-height: 1.65; margin-bottom: 14px; }
 .detPanel p b { color: var(--text); font-weight: 500; }
+
+/* DETAIL TABS — content-driven panels (architecture / telemetry / code / security) */
+.archLayers { display: flex; flex-direction: column; gap: 8px; margin: 18px 0 4px; }
+.archLayers .layer { background: rgba(0,0,0,.25); border: 1px solid var(--border-2); border-radius: 8px; padding: 12px 14px; }
+.archLayers .ll { font-family: var(--mono); font-size: 10px; color: var(--purple); letter-spacing: .18em; margin-bottom: 8px; }
+.archLayers .li { display: flex; flex-wrap: wrap; gap: 6px; }
+.archLayers .lnote { font-size: 12px; color: var(--dim); margin-top: 8px; line-height: 1.5; }
+.fileList { display: flex; flex-direction: column; gap: 8px; margin: 18px 0 4px; }
+.fileRow { display: flex; justify-content: space-between; gap: 14px; align-items: baseline; background: rgba(0,0,0,.25); border: 1px solid var(--border-2); border-radius: 8px; padding: 10px 14px; text-decoration: none; }
+.fileRow code { font-family: var(--mono); font-size: 12px; color: var(--cyan); }
+.fileRow span { font-size: 12px; color: var(--muted); text-align: right; }
+.fileRow:hover { border-color: var(--purple); }
+.snippet { margin: 18px 0 4px; }
+.snippet .snipTitle { font-family: var(--mono); font-size: 10px; color: var(--purple); letter-spacing: .18em; margin-bottom: 8px; }
+.snippet .codeBlock { overflow-x: auto; white-space: pre; }
+.snippet .snipCap { font-size: 12px; color: var(--dim); margin-top: 8px; line-height: 1.6; }
 .featureList { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
 .featureList .f { background: rgba(0,0,0,.25); border: 1px solid var(--border-2); border-radius: 8px; padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; }
 .featureList .f .ic { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); margin-top: 7px; flex-shrink: 0; box-shadow: 0 0 8px var(--purple); }

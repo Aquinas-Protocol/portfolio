@@ -49,6 +49,17 @@ const ProfileSchema = z.object({
 const StatSchema = z.object({ k: z.string(), v: z.string(), t: z.string(), tClass: z.string(), spark });
 const CareerStatSchema = z.object({ k: z.string(), v: z.string(), vClass: z.string(), t: z.string() });
 
+// One shape serves all four detail tabs; every section is optional and the renderer skips empties.
+const TabSchema = z.object({
+  paragraphs: z.array(z.string()).default([]),
+  layers: z.array(z.object({ label: z.string(), items: z.array(z.string()), note: z.string().optional() })).default([]),
+  kpis: z.array(z.object({ k: z.string(), v: z.string(), vCls: z.string(), t: z.string() })).default([]),
+  controls: z.array(z.object({ name: z.string(), desc: z.string() })).default([]),
+  files: z.array(z.object({ path: z.string(), url: z.string(), note: z.string() })).default([]),
+  snippets: z.array(z.object({ title: z.string(), code: z.string(), caption: z.string().optional() })).default([]),
+  link: z.object({ href: z.string(), label: z.string() }).optional(),
+});
+
 const SystemSchema = z.object({
   id: z.string(),
   slug: z.string(),
@@ -80,6 +91,14 @@ const SystemSchema = z.object({
     deps: z.array(z.object({ name: z.string(), ver: z.string() })),
     commits: z.array(z.object({ h: z.string(), msg: z.string(), t: z.string() })),
     related: z.array(z.object({ name: z.string(), meta: z.string(), slug: z.string() })),
+    tabs: z
+      .object({
+        architecture: TabSchema.optional(),
+        telemetry: TabSchema.optional(),
+        code: TabSchema.optional(),
+        security: TabSchema.optional(),
+      })
+      .optional(),
   }),
 });
 

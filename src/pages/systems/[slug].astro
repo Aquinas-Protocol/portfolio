@@ -8,6 +8,8 @@ export function getStaticPaths() {
 }
 const { system: s } = Astro.props;
 const d = s.detail;
+const TAB_ORDER = ['architecture', 'telemetry', 'code', 'security'] as const;
+const tabs = TAB_ORDER.filter((key) => d.tabs?.[key]).map((key) => ({ key, tab: d.tabs![key]! }));
 ---
 <BaseLayout title={`${s.name} — Systems — Dylan Palumbo`} description={s.desc} activeRoute="systems">
   <div class="wrap" style="padding-top:36px;padding-bottom:64px">
@@ -39,13 +41,12 @@ const d = s.detail;
     <div class="detLayout">
       <div>
         <div class="tabbar" role="tablist">
-          <button class="tab act" type="button" role="tab" aria-selected="true">OVERVIEW</button>
-          <button class="tab" type="button" role="tab" aria-selected="false" aria-disabled="true">ARCHITECTURE</button>
-          <button class="tab" type="button" role="tab" aria-selected="false" aria-disabled="true">TELEMETRY</button>
-          <button class="tab" type="button" role="tab" aria-selected="false" aria-disabled="true">CODE</button>
-          <button class="tab" type="button" role="tab" aria-selected="false" aria-disabled="true">SECURITY</button>
+          <button class="tab act" type="button" role="tab" aria-selected="true" data-tab="overview">OVERVIEW</button>
+          {tabs.map(({ key }) => (
+            <button class="tab" type="button" role="tab" aria-selected="false" data-tab={key}>{key.toUpperCase()}</button>
+          ))}
         </div>
-        <div class="detPanel">
+        <div class="detPanel" role="tabpanel" data-tabpanel="overview">
           <h2>What it does</h2>
           {d.paragraphs.map((p) => <p set:html={p}></p>)}
           <div class="featureList">
@@ -58,6 +59,51 @@ const d = s.detail;
             {d.stackMatrix.map((sm) => <div class="sm"><div class="l">{sm.l}</div><div class="n">{sm.n}</div></div>)}
           </div>
         </div>
+        {tabs.map(({ key, tab }) => (
+          <div class="detPanel" role="tabpanel" data-tabpanel={key} hidden>
+            {tab.paragraphs.map((p) => <p set:html={p}></p>)}
+            {tab.layers.length > 0 && (
+              <div class="archLayers">
+                {tab.layers.map((l) => (
+                  <div class="layer">
+                    <div class="ll">{l.label}</div>
+                    <div class="li">{l.items.map((i) => <span class="chip">{i}</span>)}</div>
+                    {l.note && <div class="lnote">{l.note}</div>}
+                  </div>
+                ))}
+              </div>
+            )}
+            {tab.kpis.length > 0 && (
+              <div class="kpiRow" style="margin:18px 0 4px">
+                {tab.kpis.map((k) => (
+                  <div class="kpi2"><div class="k">{k.k}</div><div class={`v ${k.vCls}`}>{k.v}</div><div class="t">{k.t}</div></div>
+                ))}
+              </div>
+            )}
+            {tab.controls.length > 0 && (
+              <div class="featureList">
+                {tab.controls.map((c) => (
+                  <div class="f"><div class="ic"></div><div class="ftext"><div class="name">{c.name}</div><div class="d">{c.desc}</div></div></div>
+                ))}
+              </div>
+            )}
+            {tab.files.length > 0 && (
+              <div class="fileList">
+                {tab.files.map((f) => (
+                  <a class="fileRow" href={f.url} target="_blank" rel="noopener"><code>{f.path}</code><span>{f.note}</span></a>
+                ))}
+              </div>
+            )}
+            {tab.snippets.map((sn) => (
+              <div class="snippet">
+                <div class="snipTitle">{sn.title}</div>
+                <pre class="codeBlock"><code>{sn.code}</code></pre>
+                {sn.caption && <div class="snipCap">{sn.caption}</div>}
+              </div>
+            ))}
+            {tab.link && <a class="btn primary" style="margin-top:18px" href={tab.link.href}>{tab.link.label}</a>}
+          </div>
+        ))}
       </div>
 
       <aside class="sb">
@@ -83,3 +129,19 @@ const d = s.detail;
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  const bar = document.querySelector('.tabbar');
+  const tabs = bar ? Array.from(bar.querySelectorAll<HTMLElement>('.tab[data-tab]')) : [];
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-tabpanel]'));
+  bar?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>('.tab[data-tab]');
+    if (!btn) return;
+    for (const t of tabs) {
+      const on = t === btn;
+      t.classList.toggle('act', on);
+      t.setAttribute('aria-selected', String(on));
+    }
+    for (const p of panels) p.hidden = p.dataset.tabpanel !== btn.dataset.tab;
+  });
+</script>

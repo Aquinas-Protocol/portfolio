@@ -62,7 +62,69 @@
         { "name": "Domo", "meta": "OSS · SYS-002", "slug": "domo" },
         { "name": "second-brain", "meta": "VAULT · SYS-003", "slug": "second-brain" },
         { "name": "elevation-broker", "meta": "LIVE · SYS-004", "slug": "elevation-broker" }
-      ]
+      ],
+      "tabs": {
+        "architecture": {
+          "paragraphs": [
+            "One Windows service hosts the Discord bot. Every inbound message passes a <b>single-user auth gate at receipt</b> — before any LLM call — then dispatches to a persistent runner per agent. Tool calls route through the Claude Agent SDK to in-process MCP servers, and every invocation crosses a <b>PreToolUse policy hook</b>, even under bypassPermissions. High-trust execution lives in a separate elevated service the bot can only reach by request token.",
+            "Every feature wires through the same seam: a per-feature pattern that scopes tools per agent and <b>self-disables when its config is absent</b>. That one convention is why the public Domo build runs with zero personal data — strip the config, and the feature folds away cleanly."
+          ],
+          "layers": [
+            { "label": "// SURFACE", "items": ["Discord (6 bot accounts)", "Mission Control (FastAPI + vanilla JS)"], "note": "single-user auth gate at message receipt; PIN-gated dashboard" },
+            { "label": "// ORCHESTRATION", "items": ["Agent runner per agent", "Per-thread sub-agents", "Cron scheduler"], "note": "persistent SDK client per agent — lazy construction, idle teardown, session resume" },
+            { "label": "// MODELS", "items": ["Claude (Agent SDK)", "GPT-5.5 (sandboxed Codex bridge)"], "note": "server-side pipelines fall back to the Claude agent automatically" },
+            { "label": "// TOOLS", "items": ["In-process MCP servers", "Per-agent allowlists", "PreToolUse policy hook"], "note": "email, calendar, finance ledger, opportunity store, video, elevation" },
+            { "label": "// STATE", "items": ["SQLite (schema-versioned)", "second-brain vault"], "note": "sessions, task ledger, cron jobs, elevation requests; backup before every migration" },
+            { "label": "// PRIVILEGE", "items": ["Elevation broker (LocalSystem)", "Named pipe · token-only"], "note": "separate Windows service; the bot never sends command text" }
+          ]
+        },
+        "telemetry": {
+          "paragraphs": [
+            "The reliability layer is boring on purpose. NSSM supervises the bot service; a SYSTEM-level watchdog re-checks it on a timer; boot recovery gates on DNS before starting; scheduled jobs are idempotent and safe to retry. None of it is exotic — all of it is measured.",
+            "Liveness is <b>measured, not assumed</b>: satellite clients beacon heartbeats into health tables, a stale heartbeat posts exactly one alert, and recovery posts the all-clear. The feed on the homepage is the public slice — GitHub events, sanitized server-side before the browser ever sees them."
+          ],
+          "kpis": [
+            { "k": "Uptime · 30d", "v": "99.94%", "vCls": "g", "t": "30d window" },
+            { "k": "Watchdog", "v": "3 min", "vCls": "c", "t": "SYSTEM-level check" },
+            { "k": "Sidecar Self-heal", "v": "≤60s", "vCls": "p", "t": "smoke-tested ~59s" },
+            { "k": "Cron Jobs", "v": "8", "vCls": "g", "t": "idempotent runs" }
+          ],
+          "link": { "href": "/#live-telemetry", "label": "SEE LIVE TELEMETRY →" }
+        },
+        "code": {
+          "paragraphs": [
+            "The production repo is private, but the architecture is public twice over: the MIT-licensed <b>Domo</b> extraction carries the full structure, and the load-bearing internals are quoted below exactly as they appear in source."
+          ],
+          "snippets": [
+            {
+              "title": "// ELEVATION BROKER · WIRE PROTOCOL",
+              "code": "bot    →  broker:  {\"request_id\": \"<uuid>\"}\nbroker →  bot:     {\"status\": \"executed\", \"exit_code\": 0, \"stdout\": \"...\"}",
+              "caption": "The payload over the pipe is only a UUID. The broker re-reads the approved command from its own store, re-hashes it, compares, then executes — the bot can't lie over the pipe to bypass approval."
+            },
+            {
+              "title": "// PRETOOLUSE GUARD · WHY THERE IS NO VERB ALLOWLIST",
+              "code": "# Read/exfil verbs are open-ended (cat, head, sed, awk, cp, scp,\n# dd, xxd, base64, python -c, ruby -e, perl, ...). Listing \"all\" is\n# impossible; verb-based gating fails open under adversarial framing.",
+              "caption": "Any shell command that mentions a sensitive filename is denied, whatever verb wraps it. False positives are accepted; an entire class of bypass is closed."
+            }
+          ],
+          "files": [
+            { "path": "Aquinas-Protocol/domo", "url": "https://github.com/Aquinas-Protocol/domo", "note": "MIT extraction — council, Mission Control, cron, elevation, plugin seam" }
+          ]
+        },
+        "security": {
+          "paragraphs": [
+            "The agents have real tools — email, calendar, elevated PowerShell, a knowledge vault — so the threat model is the architecture. The full write-up maps every control onto the <b>OWASP LLM Top 10 (2025)</b>, including an explicit list of what the model does not defend against."
+          ],
+          "controls": [
+            { "name": "Capability minimization", "desc": "Per-agent MCP allowlists; an injected instruction can't invoke a tool the agent doesn't have. The persona can be jailbroken; the allowlist cannot." },
+            { "name": "HITL approval embeds", "desc": "Irreversible tools block on a Discord Approve/Deny; resolved embeds are edited in place so the audit trail is the message itself." },
+            { "name": "Privilege separation", "desc": "Elevated execution in a separate LocalSystem service; UUID-only payloads; non-overridable deny list requiring a code change to alter." },
+            { "name": "PreToolUse fences", "desc": "Filename-first denial of secret reads and protected writes — raw/ sources, persona files, and bot source are read-only even in autonomous mode." },
+            { "name": "Single-user auth gate", "desc": "Messages from anyone but the operator drop at receipt, before any LLM call — the cheapest control absorbs the cheapest attack." }
+          ],
+          "link": { "href": "/writing/discord-ops-security-model/", "label": "READ THE THREAT MODEL →" }
+        }
+      }
     }
   },
   {
@@ -342,7 +404,47 @@
       "related": [
         { "name": "email-cull", "meta": "LIVE · SYS-006", "slug": "email-cull" },
         { "name": "Domo", "meta": "OSS · SYS-002", "slug": "domo" }
-      ]
+      ],
+      "tabs": {
+        "architecture": {
+          "paragraphs": [
+            "A NestJS modular monolith with <b>hexagonal seams</b>: GmailPort, SpamScorer, and ApplyRunner are interfaces. The fixture adapters that keep the test suite hermetic and the Fargate apply-worker planned for Phase 2 are both just adapters — no controller-layer change either way.",
+            "State lives in <b>single-table DynamoDB</b> with a sparse GSI. Every status transition is a conditional write; a failed compare-and-set maps to HTTP 409. The apply worker runs out of process and streams JSONL events — if it dies mid-flight, the API reconciles the scan from terminal markers rather than trusting the worker's last word."
+          ],
+          "layers": [
+            { "label": "// API", "items": ["NestJS 11 controllers", "SSE ledger gateway", "ServeStatic dashboard"], "note": "React/Vite operator UI served same-origin — the live ledger is a plain EventSource" },
+            { "label": "// DOMAIN", "items": ["scanner.service", "email-cull.service", "criteria.service"], "note": "scan → propose → human approves per-thread → apply" },
+            { "label": "// PORTS", "items": ["GmailPort", "SpamScorer", "ApplyRunner"], "note": "fixture adapters keep the suite keyless and hermetic" },
+            { "label": "// STATE", "items": ["DynamoDB single-table", "Sparse GSI", "Conditional writes"], "note": "CAS state machine; racing workers get 409, never a double-finalize" },
+            { "label": "// APPLY", "items": ["Out-of-process worker", "JSONL event stream", "Crash reconciliation"], "note": "idempotent operations guarded by terminal markers" }
+          ]
+        },
+        "code": {
+          "paragraphs": [
+            "The repo is public and small enough to read in a sitting. These are the files that carry the design:"
+          ],
+          "files": [
+            { "path": "src/cull/email-cull.repository.ts", "url": "https://github.com/Aquinas-Protocol/email-triage-ts/blob/main/src/cull/email-cull.repository.ts", "note": "conditional-write state machine" },
+            { "path": "src/tokens/thread-token.ts", "url": "https://github.com/Aquinas-Protocol/email-triage-ts/blob/main/src/tokens/thread-token.ts", "note": "HMAC opaque tokens — bit-identical to the Python original" },
+            { "path": "src/apply/apply-runner.ts", "url": "https://github.com/Aquinas-Protocol/email-triage-ts/blob/main/src/apply/apply-runner.ts", "note": "crash-isolated apply + reconciliation" },
+            { "path": "src/scoring/llm-spam-scorer.ts", "url": "https://github.com/Aquinas-Protocol/email-triage-ts/blob/main/src/scoring/llm-spam-scorer.ts", "note": "Haiku 4.5 behind strict tool use, pinned snapshot" },
+            { "path": "evals/src/scorers.ts", "url": "https://github.com/Aquinas-Protocol/email-triage-ts/blob/main/evals/src/scorers.ts", "note": "four scorers incl. LLM-as-judge" },
+            { "path": ".github/workflows/evals.yml", "url": "https://github.com/Aquinas-Protocol/email-triage-ts/blob/main/.github/workflows/evals.yml", "note": "CI gate — schema regression fails the build" }
+          ]
+        },
+        "security": {
+          "paragraphs": [
+            "Same posture as the private original: the system proposes, a human disposes, and every reference that crosses a trust boundary is signed."
+          ],
+          "controls": [
+            { "name": "HMAC opaque tokens", "desc": "Thread references signed and compared timing-safe; a frozen vector from the Python codec is asserted in CI, so the boundary survived the port bit-for-bit." },
+            { "name": "Human gate", "desc": "Nothing is applied without per-thread approval in the dashboard — the scanner can only propose." },
+            { "name": "Keyless CI", "desc": "Evals run against committed gold with content-addressed caching; no API keys in the pipeline, fully reproducible." },
+            { "name": "Criteria audit trail", "desc": "SHA-256 criteria hash on every scan, so re-scoring across criteria revisions stays traceable." }
+          ],
+          "link": { "href": "https://github.com/Aquinas-Protocol/email-triage-ts/blob/main/evals/README.md", "label": "EVAL HARNESS README ↗" }
+        }
+      }
     }
   },
   {

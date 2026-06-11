@@ -14,7 +14,7 @@
   {
     "icon": "{ }", "iconClass": "gn", "name": "GitHub", "handle": "github.com/Aquinas-Protocol",
     "best": "Best for <b>looking at the work itself</b>. Domo is OSS.",
-    "badge": "PUBLIC WORK", "badgeClass": "pur", "rt": "REPOS · 7 PUBLIC", "action": "VIEW →",
+    "badge": "PUBLIC WORK", "badgeClass": "pur", "rt": "REPOS · 9 PUBLIC", "action": "VIEW →",
     "href": "https://github.com/Aquinas-Protocol", "live": true
   },
   {
@@ -32,7 +32,7 @@
   {
     "icon": "↧", "iconClass": "cy", "name": "Resume · PDF", "handle": "/resume.pdf · 2 pages",
     "best": "Best for <b>recruiters who just need the document</b>. Master + tailored on request.",
-    "badge": "DOWNLOAD", "badgeClass": "cy", "rt": "UPDATED · 2026.05", "action": "DOWNLOAD →",
+    "badge": "DOWNLOAD", "badgeClass": "cy", "rt": "UPDATED · 2026.06", "action": "DOWNLOAD →",
     "href": "resume.pdf", "live": true
   }
 ]

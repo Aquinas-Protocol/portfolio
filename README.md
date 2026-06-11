@@ -57,7 +57,8 @@ seed). Zod schemas in `src/lib/content.ts` fail the build on a typo or shape mis
 
 ## Known v1 gaps
 
-- `public/og-default.png` (1200×630 social-share image) is referenced in `<head>` but not yet authored —
-  add one (a screenshot of the hero works) before sharing links widely.
-- Systems detail tabs beyond Overview, the FilterBar search, and the "+ New System" / "Export Manifest"
-  buttons are intentionally visual-only for v1.
+- Systems detail tabs are content-driven (`detail.tabs` in `systems.json`, optional per system) — authored
+  for discord-ops and email-triage-ts so far. The FilterBar search and the "+ New System" / "Export
+  Manifest" buttons remain intentionally visual-only.
+- `/resume.pdf` is rendered from `design/resume-public.md` (render commands in its header comment);
+  re-render and commit when the master resume changes.
