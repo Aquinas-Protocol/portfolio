@@ -2,46 +2,52 @@
   {
     "id": "SYS-001", "slug": "discord-ops", "name": "discord-ops", "statusLabel": "v2.7.7A",
     "badge": { "label": "LIVE", "cls": "live" },
-    "desc": "5-agent Claude council fronted by Discord. Admin elevation broker, cron scheduler, vault write-guard.",
+    "desc": "6-agent Claude council fronted by Discord. Multi-model fallback via a sandboxed Codex bridge, admin elevation broker, cron scheduler, voice notes, vault write-guard.",
     "grid": {
-      "telHead": "// 30D UPTIME", "telRight": "99.94%", "val": "385", "unit": "tests passing",
+      "telHead": "// 30D UPTIME", "telRight": "99.94%", "val": "1,069", "unit": "tests passing",
       "spark": { "stroke": "#5ee892", "points": "0,8 8,9 16,7 24,10 32,7 40,8 48,6 56,9 64,7 72,8 80,6 88,7 100,5" },
       "stackMini": ["Python", "FastAPI", "Agent SDK", "MCP"],
-      "footLeft": "● ONLINE · 5 / 5 AGENTS", "footStatusDot": true
+      "footLeft": "● ONLINE · 6 / 6 AGENTS", "footStatusDot": true
     },
     "detail": {
       "stamp": "// SYS-001 · v2.7.7A · OPERATOR-OWNED",
-      "sub": "A Discord-fronted Claude Agent SDK council. An operator agent coordinates a small set of specialists plus per-thread sub-agents. FastAPI + SQLite, admin-elevation broker, cron scheduler, vault write-guard hook.",
+      "sub": "A Discord-fronted Claude Agent SDK council. An operator agent coordinates a set of specialists plus per-thread sub-agents, with a GPT-5.5 fallback path over a sandboxed Codex bridge. FastAPI + SQLite, admin-elevation broker, cron scheduler, ElevenLabs voice notes, vault write-guard hook.",
       "metaBadges": [
         { "label": "LIVE · PROD", "cls": "live" },
-        { "label": "5 AGENTS", "cls": "pur" },
+        { "label": "6 AGENTS", "cls": "pur" },
         { "label": "PYTHON 3.12", "cls": "cy" },
         { "label": "PRIVATE", "cls": "am" }
       ],
       "repoUrl": "https://github.com/Aquinas-Protocol/domo", "repoLabel": "VIEW OSS BUILD ↗", "isPrivate": true,
       "kpis": [
-        { "k": "Uptime · 30d", "v": "99.94%", "vCls": "g", "t": "▲ 43m total down" },
-        { "k": "Agent Turns · 30d", "v": "1,787", "vCls": "p", "t": "▲ 247 vs prior" },
-        { "k": "Tests Passing", "v": "385 / 385", "vCls": "g", "t": "CI green" },
-        { "k": "Active Subsystems", "v": "9", "vCls": "c", "t": "all green" }
+        { "k": "Uptime · 30d", "v": "99.94%", "vCls": "g", "t": "30d window" },
+        { "k": "Agent Tasks · 30d", "v": "399", "vCls": "p", "t": "task ledger" },
+        { "k": "Tests Passing", "v": "1,069 / 1,069", "vCls": "g", "t": "CI green" },
+        { "k": "Cron Jobs", "v": "8", "vCls": "c", "t": "7 enabled" }
       ],
       "paragraphs": [
         "discord-ops is the personal-instance production system that <b>Domo</b> graduated out of. An operator agent coordinates a small council via Discord DMs and a dedicated channel, spawns per-thread sub-agents for isolated work, and exposes a local Mission Control dashboard for status + intervention. It runs on the same second-brain vault as shared memory.",
-        "The interesting parts aren't the agents themselves — those are off-the-shelf Claude. The interesting parts are the <b>seam, the scheduler, and the broker</b>: a per-feature wire pattern that scopes tools per-agent and self-disables when config is absent; a cron runner that's safe to retry; and a Windows admin-elevation broker that passes only an approved request token over a local channel (never the command text itself)."
+        "The interesting parts aren't the agents themselves — those are off-the-shelf Claude. The interesting parts are the <b>seam, the scheduler, and the broker</b>: a per-feature wire pattern that scopes tools per-agent and self-disables when config is absent; a cron runner that's safe to retry; and a Windows admin-elevation broker that passes only an approved request token over a local channel (never the command text itself).",
+        "Recent additions push past a single vendor: a <b>GPT-5.5 specialist over a sandboxed Codex CLI bridge</b> backs the council — scheduled pipelines run server-side on it and fall back to the Claude agent automatically — and a separated <b>GPT-5 evaluator</b> grades the nightly research brief, so the generator never grades its own work. Mornings, the 7AM scan ends with an <b>ElevenLabs voice note</b>: a ~60-second spoken summary played live in a voice channel and attached as an mp3."
       ],
       "featureList": [
-        { "name": "Multi-agent council", "desc": "5 agents, each its own Discord bot account, persona, model, tool allowlist." },
+        { "name": "Multi-agent council", "desc": "6 agents, each its own Discord bot account, persona, model, tool allowlist." },
         { "name": "Per-thread sub-agents", "desc": "spawn_thread_agent isolates one-off work into its own thread." },
         { "name": "Admin elevation broker", "desc": "LocalSystem service; bot passes a token only, gated by Discord Approve/Deny." },
         { "name": "Cron scheduler", "desc": "Persisted jobs, idempotent runs, hook into MCP tools across all agents." },
         { "name": "Vault write-guard", "desc": "PreToolUse hook blocks writes to protected paths and reads of secrets." },
-        { "name": "Mission Control UI", "desc": "PIN-gated dashboard views, vanilla JS, served by FastAPI static." }
+        { "name": "Mission Control UI", "desc": "PIN-gated dashboard views, vanilla JS, served by FastAPI static." },
+        { "name": "Multi-model resilience", "desc": "GPT-5.5 specialist via a sandboxed Codex bridge; server-side pipelines fall back to the Claude agent automatically." },
+        { "name": "Generator/evaluator split", "desc": "A separated GPT-5 evaluator scores the nightly brief against a weighted rubric — pass or revise." },
+        { "name": "Voice notes", "desc": "ElevenLabs TTS on the 7AM scan: spoken summary in-channel plus mp3 artifact, behind a per-day character budget." },
+        { "name": "Shared-channel routing", "desc": "First multi-agent channel: two specialists co-resident, @-mention dispatch, per-(channel, agent) sessions." }
       ],
       "stackMatrix": [
         { "l": "// LANG", "n": "Python 3.12" }, { "l": "// FRAMEWORK", "n": "FastAPI" },
         { "l": "// AGENT", "n": "Claude Agent SDK" }, { "l": "// PROTOCOL", "n": "MCP" },
         { "l": "// CHAT", "n": "discord.py" }, { "l": "// STATE", "n": "SQLite" },
-        { "l": "// HOST", "n": "Windows" }, { "l": "// IPC", "n": "Named Pipes" }
+        { "l": "// HOST", "n": "Windows" }, { "l": "// IPC", "n": "Named Pipes" },
+        { "l": "// FALLBACK", "n": "GPT-5.5 · Codex" }, { "l": "// VOICE", "n": "ElevenLabs TTS" }
       ],
       "deps": [
         { "name": "claude-agent-sdk", "ver": "0.4.2" }, { "name": "discord.py", "ver": "2.4.0" },
@@ -286,7 +292,105 @@
       "commits": [],
       "related": [
         { "name": "discord-ops", "meta": "LIVE · SYS-001", "slug": "discord-ops" },
-        { "name": "second-brain", "meta": "VAULT · SYS-003", "slug": "second-brain" }
+        { "name": "second-brain", "meta": "VAULT · SYS-003", "slug": "second-brain" },
+        { "name": "email-triage-ts", "meta": "OSS · SYS-007", "slug": "email-triage-ts" }
+      ]
+    }
+  },
+  {
+    "id": "SYS-007", "slug": "email-triage-ts", "name": "email-triage-ts", "statusLabel": "OSS",
+    "badge": { "label": "OSS · MIT", "cls": "pur" },
+    "desc": "NestJS + TypeScript + DynamoDB port of the email-cull pipeline, with a React operator dashboard and an eval-gated LLM spam scorer.",
+    "grid": {
+      "telHead": "// EVAL F1 @85", "telRight": "0.833", "val": "43", "unit": "tests passing",
+      "spark": { "stroke": "#9d7cff", "points": "0,26 14,23 28,20 42,17 56,13 70,10 84,7 100,4" },
+      "stackMini": ["TypeScript", "NestJS", "DynamoDB", "React"],
+      "footLeft": "SHIPPED 2026.06.07", "footStatusDot": false
+    },
+    "detail": {
+      "stamp": "// SYS-007 · OSS · MIT",
+      "sub": "A sanitized TypeScript port of the private email-cull pipeline: scheduled scanner proposes, a human approves per-thread, a separate worker applies — re-expressed as NestJS modules over single-table DynamoDB, with a same-origin React/Vite operator dashboard and an LLM spam scorer behind a CI-gated evaluation harness.",
+      "metaBadges": [
+        { "label": "OSS · MIT", "cls": "pur" },
+        { "label": "PUBLIC", "cls": "live" },
+        { "label": "TYPESCRIPT", "cls": "cy" }
+      ],
+      "repoUrl": "https://github.com/Aquinas-Protocol/email-triage-ts", "repoLabel": "VIEW REPO ↗", "isPrivate": false,
+      "kpis": [
+        { "k": "Tests", "v": "43 / 43", "vCls": "g", "t": "Jest + supertest E2E" },
+        { "k": "Eval F1 @85", "v": "0.833", "vCls": "p", "t": "precision 0.938" },
+        { "k": "Token Parity", "v": "bit-exact", "vCls": "c", "t": "frozen Python vector" },
+        { "k": "CI Evals", "v": "keyless", "vCls": "g", "t": "committed gold" }
+      ],
+      "paragraphs": [
+        "email-triage-ts is the public, fictional-data port of the private email-cull subsystem — the same design instincts on a NestJS / AWS stack. SQLite's guarded transactions become <b>DynamoDB conditional writes</b>: every status transition is an UpdateItem with a ConditionExpression, and a failed compare-and-set maps to HTTP 409. The HMAC opaque-token boundary survives the port <b>bit-for-bit</b> — a frozen vector generated by the original Python codec is asserted in CI.",
+        "The scanner scores each thread with an <b>LLM behind a typed, eval-gated port</b>. Four scorers (schema validation, exact-match precision/recall, numeric tolerance, LLM-as-judge) run keyless in CI against committed gold; the harness drove a real prompt iteration on record, lifting recall 0.45 → 0.75 with precision holding at 0.94. A React/Vite operator dashboard is served same-origin by the API, so the live SSE ledger is a plain EventSource."
+      ],
+      "featureList": [
+        { "name": "Conditional-write state machine", "desc": "Every transition is a DynamoDB compare-and-set; a racing worker can't double-finalize." },
+        { "name": "Out-of-process apply + reconciliation", "desc": "Crash-isolated worker streams JSONL; on any exit the API re-reads and heals the scan." },
+        { "name": "Eval-gated LLM scorer", "desc": "Haiku 4.5 via strict tool use; precision/recall gates fail the build on regression." },
+        { "name": "Operator dashboard", "desc": "React + Vite, served same-origin; approve/keep queue, criteria audit header, live SSE ledger." }
+      ],
+      "stackMatrix": [
+        { "l": "// LANG", "n": "TypeScript" }, { "l": "// FRAMEWORK", "n": "NestJS 11" },
+        { "l": "// STATE", "n": "DynamoDB" }, { "l": "// UI", "n": "React + Vite" },
+        { "l": "// EVALS", "n": "Haiku 4.5 · CI" }, { "l": "// LICENSE", "n": "MIT" }
+      ],
+      "deps": [],
+      "commits": [],
+      "related": [
+        { "name": "email-cull", "meta": "LIVE · SYS-006", "slug": "email-cull" },
+        { "name": "Domo", "meta": "OSS · SYS-002", "slug": "domo" }
+      ]
+    }
+  },
+  {
+    "id": "SYS-008", "slug": "voice-bridge", "name": "voice-bridge", "statusLabel": "LIVE",
+    "badge": { "label": "LIVE", "cls": "live" },
+    "desc": "MacBook → Windows voice dictation over RDP. Hold a hotkey, speak, release — cleaned text lands in the focused Windows app in ~2s.",
+    "grid": {
+      "telHead": "// DICTATIONS", "telRight": "1,056", "val": "~2s", "unit": "speech → paste",
+      "spark": { "stroke": "#5ee892", "points": "0,24 12,20 24,22 36,16 48,18 60,12 72,13 84,8 100,5" },
+      "stackMini": ["Python", "Quartz", "Win32", "Whisper"],
+      "footLeft": "● HEARTBEAT OK", "footStatusDot": true
+    },
+    "detail": {
+      "stamp": "// SYS-008 · LIVE · OPERATOR-OWNED",
+      "sub": "A personal dictation bridge: a Mac client captures mic audio behind a global hotkey (Quartz event tap, so the key never leaks into RDP), ships it to a Windows-side sidecar, transcribes via Whisper, and pastes the cleaned text into the foreground app — clipboard + Ctrl+V primary, per-character SendInput fallback.",
+      "metaBadges": [
+        { "label": "LIVE", "cls": "live" },
+        { "label": "PRIVATE", "cls": "am" },
+        { "label": "PYTHON", "cls": "cy" }
+      ],
+      "repoUrl": null, "repoLabel": "", "isPrivate": true,
+      "kpis": [
+        { "k": "Dictations", "v": "1,056", "vCls": "p", "t": "events ledgered" },
+        { "k": "Paste Latency", "v": "~2s", "vCls": "g", "t": "release → text" },
+        { "k": "Self-heal", "v": "≤60s", "vCls": "c", "t": "1-min watchdog" },
+        { "k": "Tests", "v": "56", "vCls": "g", "t": "sidecar + paste path" }
+      ],
+      "paragraphs": [
+        "The hard parts are all at the edges. On the Mac, a <b>Quartz CGEventTap</b> consumes exactly one key (Right Option) so the push-to-talk hotkey never reaches the RDP session — the naive global-listener approach swallows the entire keyboard. On Windows, pasting into an RDP session is its own discipline: a clipboard + Ctrl+V primary path with the prior clipboard saved and restored, and a per-character <b>SendInput</b> fallback for when another process holds the clipboard lock.",
+        "It runs as a session-bound sidecar under Task Scheduler with layered durability: a 1-minute self-heal trigger, restart-on-failure, an RDP-reconnect trigger, launchd KeepAlive on the Mac, and a <b>beacon heartbeat</b> from the Mac client into a health table that arms a down-alert when the heartbeat goes stale. That hardening was earned: a heap-corruption crash the process could not catch was traced to a background clipboard restore racing the RDP clipboard agent — the full write-up is in Writing."
+      ],
+      "featureList": [
+        { "name": "Hotkey suppression", "desc": "Quartz event tap consumes Right Option only; every other key passes through to RDP." },
+        { "name": "Clipboard paste + fallback", "desc": "Atomic Ctrl+V with save/restore, serialized on one lock; SendInput typing when the clipboard is contended." },
+        { "name": "Layered self-heal", "desc": "1-min Task Scheduler trigger, restart-on-fail, RDP-reconnect trigger, launchd KeepAlive." },
+        { "name": "Heartbeat + down-alert", "desc": "Mac beacon every 60s into a health table; a stale heartbeat posts one alert, recovery posts the all-clear." },
+        { "name": "Dual-backend STT", "desc": "Groq Whisper primary, OpenAI fallback, bounded retries and timeouts." }
+      ],
+      "stackMatrix": [
+        { "l": "// MAC", "n": "Python · Quartz" }, { "l": "// WINDOWS", "n": "FastAPI sidecar" },
+        { "l": "// PASTE", "n": "Win32 SendInput" }, { "l": "// STT", "n": "Whisper (Groq)" },
+        { "l": "// SUPERVISION", "n": "Task Scheduler" }, { "l": "// MESH", "n": "Tailscale" }
+      ],
+      "deps": [],
+      "commits": [],
+      "related": [
+        { "name": "discord-ops", "meta": "LIVE · SYS-001", "slug": "discord-ops" },
+        { "name": "home-server", "meta": "INFRA · SYS-005", "slug": "home-server" }
       ]
     }
   }

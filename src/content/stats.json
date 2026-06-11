@@ -2,7 +2,7 @@
   { "k": "Users Supported", "v": "12,838", "t": "▲ 3 countries · AMER", "tClass": "", "spark": { "stroke": "#9d7cff", "points": "0,22 12,20 24,18 36,15 48,16 60,12 72,10 84,8 100,5" } },
   { "k": "CSAT (AMER)", "v": "95.3%", "t": "▲ 17,718 tix / 9mo", "tClass": "cy", "spark": { "stroke": "#4ddbe6", "points": "0,18 14,15 28,17 42,12 56,10 70,11 84,7 100,8" } },
   { "k": "TTFR SLA", "v": "98.6%", "t": "▲ first response", "tClass": "", "spark": { "stroke": "#5ee892", "points": "0,12 18,10 36,11 54,8 72,6 90,5 100,4" } },
-  { "k": "Agent Council", "v": "5 / 5", "t": "▲ discord-ops · prod", "tClass": "", "spark": { "stroke": "#9d7cff", "points": "0,28 20,22 40,18 60,12 80,8 100,4" } },
-  { "k": "Tests Passing", "v": "385", "t": "✓ all green", "tClass": "cy", "spark": { "stroke": "#5ee892", "points": "0,20 15,16 30,18 45,12 60,14 75,8 90,6 100,4" } },
+  { "k": "Agent Council", "v": "6 / 6", "t": "▲ discord-ops · prod", "tClass": "", "spark": { "stroke": "#9d7cff", "points": "0,28 20,22 40,18 60,12 80,8 100,4" } },
+  { "k": "Tests Passing", "v": "1,069", "t": "✓ all green", "tClass": "cy", "spark": { "stroke": "#5ee892", "points": "0,20 15,16 30,18 45,12 60,14 75,8 90,6 100,4" } },
   { "k": "Assets Mgmt", "v": "1,410", "t": "✓ 100% audit pass", "tClass": "", "spark": { "stroke": "#ffb44d", "points": "0,14 20,12 40,10 60,12 80,8 100,6" } }
 ]

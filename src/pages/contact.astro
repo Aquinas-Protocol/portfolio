@@ -32,12 +32,9 @@ const cm = profile.contactMeta;
     <div class="bottomGrid">
       <div class="quickForm">
         <h2>// QUICK MESSAGE</h2>
-        <div class="sub">For when none of the channels above fit. Async — I'll read it within 24 hours.</div>
-        <form action={`mailto:${profile.handles.email}`} method="post" enctype="text/plain">
-          <div class="qf"><label for="qfFrom">NAME · EMAIL</label><input id="qfFrom" name="from" type="text" /></div>
-          <div class="qf"><label for="qfMsg">WHAT'S THE ASK</label><textarea id="qfMsg" name="message" placeholder="// short and direct works best"></textarea></div>
-          <button class="send" type="submit">SEND →</button>
-        </form>
+        <div class="sub">No form, no middleman. Short and direct works best — I read everything within 24 hours.</div>
+        <div style="font-family:var(--mono);font-size:13px;color:var(--text);margin-bottom:16px;word-break:break-all">{profile.handles.email}</div>
+        <a class="send" style="display:block;text-align:center;text-decoration:none" href={`mailto:${profile.handles.email}`}>EMAIL ME →</a>
       </div>
 
       <div class="availPanel">
