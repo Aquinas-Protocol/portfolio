@@ -1,0 +1,24 @@
+{
+  "_README": "Deterministic answers for reputation-sensitive intents. The Worker serves these VERBATIM (no LLM) so the bot never improvises on availability, work authorization, contact routing, or compensation. REVIEW every value before going live — these ship to the public. `expires_at` flags time-sensitive entries for refresh (null = no expiry). The availability/visa values below mirror what already renders on the live site (src/content/profile.json); confirm they're still current.",
+  "version": 1,
+  "facts": {
+    "availability": {
+      "answer": "Dylan is open to remote, full-time senior individual-contributor roles in AI infrastructure, platform, reliability (SRE), and senior backend — including zero-to-one builds and principal-IC engineering. Earliest start is negotiable.",
+      "expires_at": null
+    },
+    "work_authorization": {
+      "answer": "Dylan is a U.S. citizen and needs no visa sponsorship.",
+      "expires_at": null
+    },
+    "contact": {
+      "answer": "The best way to reach Dylan is the contact page on this site — it has his email and LinkedIn.",
+      "route_to": "/contact",
+      "expires_at": null
+    },
+    "compensation": {
+      "answer": "Dylan is glad to talk compensation directly — the best place to start that conversation is the contact page.",
+      "expires_at": null,
+      "_note": "Deliberately does NOT publish a salary number. Edit only if you want a public range stated."
+    }
+  }
+}

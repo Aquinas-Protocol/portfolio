@@ -28,3 +28,12 @@ pnpm-debug.log*
 # cloudflare local state + local-only secrets (never commit .dev.vars)
 .wrangler/
 .dev.vars
+
+# pitch-agent KB drafts — prose stays local until approved (only kb/manifest.json + kb/facts.json are tracked)
+kb/source/
+
+# pitch-agent internal build handoff — working doc (local paths, TODOs, detection internals); not a public artifact
+PITCH-AGENT-HANDOFF.md
+
+# pitch-agent DB tooling — migrations, ingest script, Neon runbook stay local (applied manually to Neon; not needed by the Worker deploy)
+db/

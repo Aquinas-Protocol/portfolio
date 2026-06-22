@@ -9,16 +9,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "tsc -p worker/tsconfig.json --noEmit",
+    "check": "tsc -p worker/tsconfig.json --noEmit && tsc -p worker-pitch/tsconfig.json --noEmit",
+    "test": "vitest run",
     "deploy": "astro build && wrangler deploy",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.6",
     "@tailwindcss/vite": "^4.3.0",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "astro": "^6.4.2",
+    "pg": "^8.21.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "tailwindcss": "^4.3.0",
@@ -30,6 +33,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260601.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
   }
 }

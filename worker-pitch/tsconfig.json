@@ -3,7 +3,8 @@
   "compilerOptions": {
     "lib": ["ES2022", "WebWorker"],
     "types": ["@cloudflare/workers-types"],
+    "resolveJsonModule": true,
     "noEmit": true
   },
-  "include": ["./**/*.ts", "../src/lib/telemetry.ts", "../src/lib/chat-guard.ts"]
+  "include": ["./**/*.ts", "../src/lib/chat-guard.ts"]
 }

@@ -1,0 +1,123 @@
+{
+  "_README": "Allowlist + approval gate for the pitch-agent knowledge base. ONLY files listed here with approved:true are ingested. Workflow: edit kb/source/<file>, READ IT END TO END, then set approved:true — the ingest script records the sha256 it approved into content_sha256 and re-verifies it immediately before committing to Postgres. kb/source/ is gitignored, so KB prose never enters the public repo. Only this manifest (hashes, not prose) and kb/facts.json are tracked.",
+  "version": 1,
+  "files": [
+    {
+      "file": "profile.md",
+      "topic": "profile",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.571Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "c2f345199771c5c34e93a8f2716754c0fee813c9c684ac9fe3ad72e5e4f9fa3d"
+    },
+    {
+      "file": "experience-eos.md",
+      "topic": "experience",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.574Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "99f6590da77b91182378c322c2ff7d2dd94c9659a1adbef94866d422eabce77c"
+    },
+    {
+      "file": "experience-army.md",
+      "topic": "experience",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.574Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "798aab3697b3bd382ce34592b5d139400fcdc54805b46317359ca2af29f1a7a7"
+    },
+    {
+      "file": "experience-rescuefix.md",
+      "topic": "experience",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.575Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "46d8434d984b756d779a908f2f4c9210474c47d4deb94ce7ec72f501dbc435c5"
+    },
+    {
+      "file": "project-discord-ops.md",
+      "topic": "projects",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.576Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "3635408845447445947a248de2d97bf2a4072a19960309fde3d9529f1f1b3c26"
+    },
+    {
+      "file": "project-domo.md",
+      "topic": "projects",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.580Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "ab3a4b9aa55f25e88ede193b0adc6c0582f82ff2a01a3fcb458999de5a415193"
+    },
+    {
+      "file": "project-second-brain.md",
+      "topic": "projects",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.580Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "b77946094f8e30133bae6e07ac782e7c9796015d350a7eaf51483413b9d077a3"
+    },
+    {
+      "file": "project-email-triage-ts.md",
+      "topic": "projects",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.581Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "7ab69e4888012622814c20b669509d9c747545c383678f036e9ddc555ea5eebd"
+    },
+    {
+      "file": "project-vault-rag-eval.md",
+      "topic": "projects",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.581Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "4cf7f2c879e4cbac58c1a6460cdfe5eee518163f3cddac282b9580376971479e"
+    },
+    {
+      "file": "project-portfolio-site.md",
+      "topic": "projects",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.582Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "1e3bf7179153983176ea6bdfeeed7a1ef789c3c790bc41b6bd924baa99916e84"
+    },
+    {
+      "file": "project-workout-app.md",
+      "topic": "projects",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.582Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "1028e8254853530b09243f58d62663ff0839ceb9e80727c6ae9555b4e2ae3171"
+    },
+    {
+      "file": "availability.md",
+      "topic": "availability",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.583Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "6cf6730a6946eed048730434d89b478422e985517a2f79b3fbd60ed171b9cf65"
+    },
+    {
+      "file": "faq.md",
+      "topic": "faq",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-06-22T21:23:01.583Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "81493196f67adc3838430250069814898eb914f3ab049e9121c217024b281bd0"
+    }
+  ]
+}

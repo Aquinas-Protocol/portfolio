@@ -500,3 +500,62 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .prose { font-size: 15.5px; }
   .prose h2 { font-size: 22px; }
 }
+
+/* ===================================================================== PITCH AGENT (global widget) */
+.pa-launcher { position: fixed; right: 22px; bottom: 22px; z-index: 80; display: inline-flex; align-items: center; gap: 9px; padding: 11px 16px; border-radius: 999px; cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--text); background: linear-gradient(135deg, rgba(157,124,255,.22), rgba(17,21,31,.95)); border: 1px solid var(--purple-dim); box-shadow: 0 10px 34px rgba(0,0,0,.5), 0 0 28px rgba(157,124,255,.16); transition: .18s; }
+.pa-launcher:hover { transform: translateY(-1px); box-shadow: 0 14px 40px rgba(0,0,0,.55), 0 0 36px rgba(157,124,255,.26); }
+.pa-launcher .dotp, .pa-head .ttl .dotp { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulse 2s ease-in-out infinite; flex-shrink: 0; }
+
+.pa-panel { position: fixed; right: 22px; bottom: 22px; z-index: 81; width: 380px; max-width: calc(100vw - 28px); height: 560px; max-height: calc(100vh - 44px); display: flex; flex-direction: column; background: linear-gradient(180deg, var(--panel-2), var(--panel)); border: 1px solid var(--border-2); border-radius: 14px; overflow: hidden; box-shadow: 0 24px 70px rgba(0,0,0,.6), 0 0 50px rgba(157,124,255,.1); }
+.pa-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--border); background: rgba(0,0,0,.25); }
+.pa-head .ttl { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.pa-head .disc { font-size: 10px; color: var(--dim); margin-top: 5px; line-height: 1.4; max-width: 250px; }
+.pa-x { background: none; border: 1px solid var(--border-2); color: var(--muted); border-radius: 6px; width: 26px; height: 26px; cursor: pointer; font-size: 15px; line-height: 1; flex-shrink: 0; }
+.pa-x:hover { color: var(--text); border-color: var(--purple-dim); }
+
+.pa-log { flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; font-size: 13px; line-height: 1.55; }
+.pa-msg { max-width: 86%; padding: 9px 12px; border-radius: 10px; }
+.pa-msg.user { align-self: flex-end; background: rgba(157,124,255,.12); border: 1px solid var(--purple-dim); color: var(--text); }
+.pa-msg.bot { align-self: flex-start; background: rgba(255,255,255,.03); border: 1px solid var(--border); color: var(--text); }
+.pa-typing { align-self: flex-start; font-family: var(--mono); font-size: 12px; color: var(--dim); font-style: italic; }
+.pa-typing::after { content: "▊"; color: var(--purple); animation: blink 1s steps(2) infinite; margin-left: 3px; }
+
+.pa-chips { display: flex; flex-wrap: wrap; gap: 7px; padding: 0 16px 10px; }
+.pa-chips button { font-family: var(--mono); font-size: 10px; padding: 6px 10px; border-radius: 6px; background: rgba(255,255,255,.04); border: 1px solid var(--border); color: var(--muted); cursor: pointer; letter-spacing: .04em; text-align: left; }
+.pa-chips button:hover { color: var(--text); border-color: var(--purple-dim); background: rgba(157,124,255,.07); }
+
+.pa-form { display: flex; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--border); background: rgba(0,0,0,.2); }
+.pa-form input { flex: 1; background: var(--bg); border: 1px solid var(--border-2); border-radius: 8px; padding: 10px 12px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); outline: none; }
+.pa-form input:focus { border-color: var(--purple); }
+.pa-form button { padding: 0 14px; border-radius: 8px; background: linear-gradient(135deg, rgba(157,124,255,.22), rgba(157,124,255,.08)); border: 1px solid var(--purple-dim); color: var(--purple-2); font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+.pa-form button:disabled { opacity: .45; cursor: default; }
+.pa-reach { display: block; width: 100%; text-align: center; padding: 8px; background: none; border: none; border-top: 1px solid var(--border); color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .1em; cursor: pointer; }
+.pa-reach:hover { color: var(--purple-2); }
+
+.pa-lead { border-top: 1px solid var(--border); padding: 14px 16px; background: rgba(0,0,0,.25); display: flex; flex-direction: column; gap: 9px; }
+.pa-lead .lh { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--purple); }
+.pa-lead .row { display: flex; gap: 8px; }
+.pa-lead input, .pa-lead textarea { width: 100%; background: var(--bg); border: 1px solid var(--border-2); border-radius: 7px; padding: 8px 10px; font-family: 'Inter', sans-serif; font-size: 12.5px; color: var(--text); outline: none; }
+.pa-lead input:focus, .pa-lead textarea:focus { border-color: var(--purple); }
+.pa-lead textarea { resize: vertical; min-height: 64px; }
+.pa-lead .send { padding: 10px; border-radius: 8px; background: linear-gradient(135deg, rgba(157,124,255,.22), rgba(157,124,255,.08)); border: 1px solid var(--purple-dim); color: var(--purple-2); font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; }
+.pa-lead .note { font-size: 10px; color: var(--dim); line-height: 1.4; }
+.pa-lead .status { font-size: 11px; color: var(--cyan); }
+
+/* Easter egg — Jurassic Park "magic word" lockout. Cosmetic skin on the locked state; fires only
+   on genuine exploit signals (Llama Guard block / canary hit), never on a normal off-topic refusal. */
+.pa-lock { position: absolute; inset: 0; z-index: 5; background: #0a1a3a; color: #cfe3ff; font-family: var(--mono); font-size: 12px; line-height: 1.6; padding: 18px 16px; display: flex; flex-direction: column; gap: 2px; overflow: auto; }
+.pa-lock-head { color: #9ecbff; letter-spacing: .12em; margin-bottom: 10px; border-bottom: 1px solid rgba(158,203,255,.25); padding-bottom: 8px; }
+.pa-deny { color: #ff9b9b; }
+.pa-magic { margin-top: 6px; font-weight: 700; color: #eaf2ff; }
+.pa-magic > div { opacity: 1; }
+.pa-cursor { color: #9ecbff; animation: blink 1s steps(2) infinite; }
+.pa-lock-dismiss { margin-top: auto; align-self: flex-start; background: rgba(255,255,255,.06); border: 1px solid rgba(158,203,255,.3); color: #cfe3ff; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes pa-cascade { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+  .pa-magic > div { opacity: 0; animation: pa-cascade .18s ease-out forwards; }
+}
+@media (max-width: 540px) {
+  .pa-panel { right: 0; left: 0; bottom: 0; width: 100%; max-width: 100%; height: 82vh; max-height: 82vh; border-radius: 16px 16px 0 0; }
+  .pa-launcher { right: 14px; bottom: 14px; }
+}

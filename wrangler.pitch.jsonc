@@ -1,0 +1,30 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "pitch-agent",
+	"main": "worker-pitch/index.ts",
+	"compatibility_date": "2026-06-01",
+	// nodejs_compat is required for the `pg` Postgres driver used over Hyperdrive.
+	"compatibility_flags": ["nodejs_compat"],
+	// Routes take precedence over the portfolio Worker's Custom Domain, so ONLY these
+	// two paths hit pitch-agent; everything else continues to serve the static site.
+	"routes": [
+		{ "pattern": "dylan-palumbo.com/api/chat*", "zone_name": "dylan-palumbo.com" },
+		{ "pattern": "dylan-palumbo.com/api/lead*", "zone_name": "dylan-palumbo.com" }
+	],
+	// Workers AI binding — calls are routed through AI Gateway (rate limiting + spend cap +
+	// Guardrails) via the AI_GATEWAY_ID var below. Billed off the Anthropic ceiling.
+	"ai": { "binding": "AI" },
+	// pitch_runtime least-privilege role (SELECT approved_kb + INSERT logs/leads only).
+	// Set the id after creating the Hyperdrive config during provisioning.
+	"hyperdrive": [{ "binding": "HYPERDRIVE", "id": "975cdfdb07a14e5b80a4557c1087b297" }],
+	"vars": { "AI_GATEWAY_ID": "pitch-agent" },
+	// Detection cron: every 30 min, the scheduled() handler reads recent_anomaly_stats(60),
+	// alerts to DISCORD_ALERT_WEBHOOK on canary leaks / jailbreak spikes / high refusal rate,
+	// and runs purge_expired() for retention. Window (60m) overlaps the interval (30m) on purpose.
+	"triggers": { "crons": ["*/30 * * * *"] },
+	// Secrets (set via dashboard / `wrangler secret put`, never committed):
+	//   TURNSTILE_SECRET       - Turnstile siteverify secret (lead form)
+	//   IP_HMAC_KEY            - keyed HMAC salt for hashed-IP logging (rotate periodically)
+	//   DISCORD_ALERT_WEBHOOK  - Discord webhook URL for the detection cron's anomaly alerts
+	"observability": { "enabled": true }
+}
