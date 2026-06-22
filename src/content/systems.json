@@ -403,7 +403,8 @@
       "commits": [],
       "related": [
         { "name": "email-cull", "meta": "LIVE · SYS-006", "slug": "email-cull" },
-        { "name": "Domo", "meta": "OSS · SYS-002", "slug": "domo" }
+        { "name": "Domo", "meta": "OSS · SYS-002", "slug": "domo" },
+        { "name": "vault-rag-eval", "meta": "OSS · SYS-009", "slug": "vault-rag-eval" }
       ],
       "tabs": {
         "architecture": {
@@ -494,6 +495,100 @@
         { "name": "discord-ops", "meta": "LIVE · SYS-001", "slug": "discord-ops" },
         { "name": "home-server", "meta": "INFRA · SYS-005", "slug": "home-server" }
       ]
+    }
+  },
+  {
+    "id": "SYS-009", "slug": "vault-rag-eval", "name": "vault-rag-eval", "statusLabel": "OSS",
+    "badge": { "label": "OSS · MIT", "cls": "pur" },
+    "desc": "Dense + hybrid retrieval over a synthetic corpus, with the dense-vs-hybrid call made by a keyless eval gate and deployed to a real cloud container. The cloud-deployed sibling of email-triage-ts.",
+    "grid": {
+      "telHead": "// RECALL@10 · DENSE", "telRight": "0.979", "val": "48", "unit": "reviewed gold queries",
+      "spark": { "stroke": "#9d7cff", "points": "0,27 13,24 26,21 39,17 52,15 65,11 78,8 100,4" },
+      "stackMini": ["Python", "Qdrant", "Postgres", "FastAPI"],
+      "footLeft": "SHIPPED 2026.06.20", "footStatusDot": false
+    },
+    "detail": {
+      "stamp": "// SYS-009 · OSS · MIT",
+      "sub": "A retrieval study built like production: dense vectors over Qdrant, a lexical arm over Postgres full-text + pg_trgm, fused app-side with Reciprocal Rank Fusion, and the dense-vs-hybrid decision made by a keyless eval gate against a reviewed 48-query gold set. Ships dense by default; the lexical arm is documented, tested, and enabled per-corpus. Deployed free on a Hugging Face Space.",
+      "metaBadges": [
+        { "label": "OSS · MIT", "cls": "pur" },
+        { "label": "PUBLIC", "cls": "live" },
+        { "label": "PYTHON 3.11", "cls": "cy" },
+        { "label": "RETRIEVAL", "cls": "am" }
+      ],
+      "repoUrl": "https://github.com/Aquinas-Protocol/vault-rag-eval", "repoLabel": "VIEW REPO ↗", "isPrivate": false,
+      "kpis": [
+        { "k": "Reviewed Gold", "v": "48", "vCls": "c", "t": "32 paraphrase · 8 id · 8 multi" },
+        { "k": "Recall@10 · dense", "v": "0.979", "vCls": "g", "t": "shipped default" },
+        { "k": "MRR@10 · dense", "v": "0.938", "vCls": "p", "t": "hybrid 0.972" },
+        { "k": "CI Eval", "v": "keyless", "vCls": "g", "t": "committed embeddings" }
+      ],
+      "paragraphs": [
+        "vault-rag-eval is a small, honest retrieval study built the way production is: a single shared <b>search()</b> path serves both the local eval and the cloud demo. Dense vectors live in <b>Qdrant</b>, a lexical arm (exact-token + substring) lives in <b>Postgres</b> full-text + <b>pg_trgm</b>, and the two are fused app-side with <b>Reciprocal Rank Fusion</b> (k=60, dense up-weighted).",
+        "The benchmark is a <b>reviewed 48-query gold set</b> — 32 paraphrase, 8 exact-identifier, 8 multi-page — authored from the documents' content and adversarially reviewed for label correctness and anti-rigging. The finding: dense is near-perfect on conceptual queries (paraphrase hit@5 1.000) but <b>blind to novel exact tokens</b> — a query for the invented identifier <b>FENCING_EPOCH_ID</b> retrieves nothing useful from dense. Hybrid's lift is real but small and <b>entirely on identifier queries</b>, so <b>dense ships by default</b> and the verdict flips on the query mix.",
+        "The gate is what makes that call trustworthy. Embeddings are content-addressed and committed, so CI runs the real retrieval path with no API key and a missing fixture is a hard error. It also caught a plausible-but-wrong config: <b>hybrid-exact+trigram</b> had the best headline (hit@5 1.000) but lowered MRR on the very identifier queries it was meant to help — a worse ranking masquerading as a better score."
+      ],
+      "featureList": [
+        { "name": "Keyless eval gate", "desc": "Content-addressed embeddings are committed, so CI replays the real retrieval path with no API key; a missing fixture is a hard error and any metric below baseline fails the build." },
+        { "name": "Dense + lexical via RRF", "desc": "Dense over Qdrant fused with Postgres full-text + pg_trgm via Reciprocal Rank Fusion (k=60), with the dense arm up-weighted by default." },
+        { "name": "Reviewed gold set", "desc": "48 queries authored from document content, then adversarially reviewed for label correctness and anti-rigging; the paraphrase/identifier mix is disclosed because it drives the verdict." },
+        { "name": "Deployed proof", "desc": "Live on a free Hugging Face Space ($0; ephemeral Qdrant re-seeds from committed fixtures on boot); a scale-to-zero Fly.io topology is documented at ~$0.30–0.75/mo." }
+      ],
+      "stackMatrix": [
+        { "l": "// LANG", "n": "Python 3.11" }, { "l": "// DENSE", "n": "Qdrant" },
+        { "l": "// LEXICAL", "n": "Postgres · pg_trgm" }, { "l": "// EMBED", "n": "nomic-embed-text · 768d" },
+        { "l": "// FUSION", "n": "RRF (k=60)" }, { "l": "// API", "n": "FastAPI" },
+        { "l": "// DEPLOY", "n": "HF Space · Fly.io" }, { "l": "// LICENSE", "n": "MIT" }
+      ],
+      "deps": [
+        { "name": "qdrant-client", "ver": "1.12" }, { "name": "psycopg", "ver": "3.2" }, { "name": "fastapi", "ver": "0.115" }
+      ],
+      "commits": [],
+      "related": [
+        { "name": "email-triage-ts", "meta": "OSS · SYS-007", "slug": "email-triage-ts" },
+        { "name": "second-brain", "meta": "VAULT · SYS-003", "slug": "second-brain" }
+      ],
+      "tabs": {
+        "architecture": {
+          "paragraphs": [
+            "One <b>search()</b> path serves both the keyless local eval and the deployed demo, so what CI measures is what production runs. The dense arm scores cosine similarity over committed vectors; when hybrid is enabled, lexical arms (exact-token via Postgres full-text, substring via pg_trgm) are fused in with Reciprocal Rank Fusion.",
+            "Every committed artifact is regenerable from <b>corpus/</b>, and CI asserts provenance — the index, manifest, and content-addressed embedding cache are reproducible, not magic numbers checked into the tree."
+          ],
+          "layers": [
+            { "label": "// CORPUS", "items": ["40 synthetic md docs", "120 indexed chunks", "manifest + fixtures"], "note": "regenerable from corpus/; CI asserts provenance" },
+            { "label": "// EMBED", "items": ["Ollama nomic-embed-text", "768 dims", "content-addressed cache"], "note": "vectors committed — keyless replay in CI" },
+            { "label": "// DENSE", "items": ["Qdrant container", "cosine over committed vectors"], "note": "re-seeded from fixtures on boot (sub-second)" },
+            { "label": "// LEXICAL", "items": ["Postgres tsvector", "pg_trgm substring"], "note": "exact-token + substring arms over Neon" },
+            { "label": "// FUSION", "items": ["Reciprocal Rank Fusion", "k=60 · depth 50", "dense up-weighted"], "note": "one search() path for local + cloud" }
+          ]
+        },
+        "telemetry": {
+          "paragraphs": [
+            "Method before metric: the gate measures whether the right <b>page</b> is retrieved, reproducibly and for free. It does not bound confidence intervals at n=48, does not measure downstream answer faithfulness, and is pinned to one embedding model and dimension — all stated plainly in the write-up."
+          ],
+          "kpis": [
+            { "k": "Dense hit@5", "v": "0.979", "vCls": "g", "t": "paraphrase 1.000" },
+            { "k": "Hybrid recall@10", "v": "1.000", "vCls": "c", "t": "lift on identifier queries" },
+            { "k": "Identifier MRR@10", "v": "0.812 → 0.893", "vCls": "p", "t": "dense → hybrid-exact" },
+            { "k": "Baseline gate", "v": "± 0.05", "vCls": "g", "t": "fails build on regression" }
+          ],
+          "link": { "href": "https://arti0-vault-rag-eval.hf.space", "label": "TRY THE LIVE DEMO ↗" }
+        },
+        "code": {
+          "paragraphs": [
+            "The repo is public and reads in a sitting. These are the files that carry the design — the shared retrieval path, the fusion, and the keyless gate that decides what ships:"
+          ],
+          "files": [
+            { "path": "src/vrag/retrieve.py", "url": "https://github.com/Aquinas-Protocol/vault-rag-eval/blob/main/src/vrag/retrieve.py", "note": "shared dense + lexical search() path" },
+            { "path": "src/vrag/rrf.py", "url": "https://github.com/Aquinas-Protocol/vault-rag-eval/blob/main/src/vrag/rrf.py", "note": "reciprocal rank fusion (k=60)" },
+            { "path": "evals/run.py", "url": "https://github.com/Aquinas-Protocol/vault-rag-eval/blob/main/evals/run.py", "note": "keyless eval gate driver" },
+            { "path": "evals/gold.jsonl", "url": "https://github.com/Aquinas-Protocol/vault-rag-eval/blob/main/evals/gold.jsonl", "note": "48 reviewed gold queries" },
+            { "path": "docs/writeup.md", "url": "https://github.com/Aquinas-Protocol/vault-rag-eval/blob/main/docs/writeup.md", "note": "full method, verdict, and cost analysis" },
+            { "path": ".github/workflows/ci.yml", "url": "https://github.com/Aquinas-Protocol/vault-rag-eval/blob/main/.github/workflows/ci.yml", "note": "provenance + keyless eval gate" }
+          ],
+          "link": { "href": "/writing/eval-first-hybrid-retrieval/", "label": "READ THE WRITE-UP →" }
+        }
+      }
     }
   }
 ]
