@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Topbar from '../components/Topbar.astro';
+import PitchAgent from '../components/islands/PitchAgent.tsx';
 import { withBase } from '../lib/url';
 
 interface Props {
@@ -42,5 +43,6 @@ const ogUrl = Astro.site ? new URL(withBase(ogImage), Astro.site).href : withBas
     <main>
       <slot />
     </main>
+    <PitchAgent client:idle />
   </body>
 </html>
