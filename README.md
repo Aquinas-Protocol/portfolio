@@ -14,15 +14,15 @@ the telemetry Worker. It serves `POST /api/chat` and `POST /api/lead` on the pro
 
 - **Retrieval:** Neon Postgres + pgvector reached only through Cloudflare Hyperdrive; exact vector
   search over a small, curated corpus.
-- **Inference:** Workers AI behind AI Gateway — embeddings + a Llama 3.3 70B generator + Llama Guard
-  input safety, with Gateway guardrails and a spend cap.
+- **Inference:** Workers AI routed through an AI Gateway (where guardrails and a spend cap are
+  configured) — embeddings + a Llama 3.3 70B generator + Llama Guard input safety.
 - **Grounding:** answers come only from retrieved, approved KB context; a retrieval-threshold gate
   returns a canned decline when nothing relevant is found. Reputation-sensitive facts (availability,
   work authorization, compensation, contact) are served verbatim from `kb/facts.json` — no LLM.
-- **Defense-in-depth:** jailbreak pre-filter → Llama Guard → retrieval gate → generation with a
-  per-request canary → output leak/PII filter; `cache-control: no-store` on every response; a
-  least-privilege Postgres role (reads approved KB, inserts logs/leads, cannot read leads back);
-  Turnstile on the lead form; and a scheduled detection cron for anomaly alerts + retention purge.
+- **Defense-in-depth:** jailbreak pre-filter → Llama Guard (only on flagged input) → retrieval gate
+  → generation with a per-request canary → output leak/PII filter; `cache-control: no-store` on every
+  response; a least-privilege Postgres role (reads approved KB, inserts logs/leads, cannot read leads
+  back); Turnstile on the lead form; and a scheduled detection cron for anomaly alerts + retention purge.
 
 | Path | Role |
 | :-- | :-- |
