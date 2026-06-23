@@ -308,7 +308,39 @@ function mkLog(p: {
   };
 }
 
-async function lead(request: Request, env: Env): Promise<Response> {
+// Best-effort Discord notification on a new lead (reuses DISCORD_ALERT_WEBHOOK → #pitch-alerts).
+// Never throws — a failed ping must not affect the already-saved lead. Sent as an embed (embeds
+// don't trigger @mentions) with allowed_mentions locked down as belt-and-suspenders against a
+// lead body containing @everyone/@here.
+async function notifyLead(
+  env: Env,
+  lead: { name: string | null; email: string | null; company: string | null; role: string | null; message: string | null },
+): Promise<void> {
+  if (!env.DISCORD_ALERT_WEBHOOK) return;
+  const f = (name: string, v: string | null, inline = true) => ({ name, value: (v ?? "—").slice(0, 1024) || "—", inline });
+  await fetch(env.DISCORD_ALERT_WEBHOOK, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      embeds: [
+        {
+          title: "📬 New lead via AI Dylan",
+          color: 0x5ee892,
+          fields: [
+            f("Name", lead.name),
+            f("Email", lead.email),
+            f("Company", lead.company),
+            f("Role", lead.role),
+            f("Message", lead.message, false),
+          ],
+        },
+      ],
+      allowed_mentions: { parse: [] },
+    }),
+  }).catch(() => {});
+}
+
+async function lead(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
   let body: Record<string, unknown>;
   try {
     body = (await request.json()) as Record<string, unknown>;
@@ -344,11 +376,14 @@ async function lead(request: Request, env: Env): Promise<Response> {
       role,
       message,
     ]);
-  } catch {
+  } catch (e) {
+    console.error("lead insert failed:", e instanceof Error ? e.message : String(e));
     return noStore({ error: "could not save" }, 503);
   } finally {
     await client.end().catch(() => {});
   }
+  // Real-time notification (best-effort, post-response): ping #pitch-alerts so a lead is never missed.
+  ctx.waitUntil(notifyLead(env, { name, email, company, role, message }));
   return noStore({ ok: true });
 }
 
@@ -410,7 +445,7 @@ export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     if (request.method === "POST" && url.pathname === "/api/chat") return chat(request, env, ctx);
-    if (request.method === "POST" && url.pathname === "/api/lead") return lead(request, env);
+    if (request.method === "POST" && url.pathname === "/api/lead") return lead(request, env, ctx);
     return noStore({ error: "not found" }, 404);
   },
 
