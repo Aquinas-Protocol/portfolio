@@ -42,8 +42,10 @@ function loadTurnstile(): Promise<void> {
   return turnstilePromise;
 }
 
-export default function PitchAgent() {
-  const [open, setOpen] = useState(false);
+export default function PitchAgent({ variant = 'floating' }: { variant?: 'floating' | 'inline' } = {}) {
+  const inline = variant === 'inline';
+  // Inline mode is always-open and lives in normal flow; the floating launcher/close don't exist there.
+  const [open, setOpen] = useState(inline);
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
@@ -61,15 +63,15 @@ export default function PitchAgent() {
     logRef.current?.scrollTo({ top: logRef.current.scrollHeight, behavior: 'smooth' });
   }, [msgs, sending, leadOpen]);
 
-  // Escape closes the panel.
+  // Escape closes the floating panel. Disabled inline — there's no launcher to reopen it.
   useEffect(() => {
-    if (!open) return;
+    if (!open || inline) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open]);
+  }, [open, inline]);
 
   // Render Turnstile when the lead form opens.
   useEffect(() => {
@@ -155,7 +157,7 @@ export default function PitchAgent() {
     }
   }
 
-  if (!open) {
+  if (!open && !inline) {
     return (
       <button className="pa-launcher" onClick={() => setOpen(true)} aria-label="Open chat with AI Dylan">
         <span className="dotp" aria-hidden="true" />
@@ -165,7 +167,7 @@ export default function PitchAgent() {
   }
 
   return (
-    <div className="pa-panel" role="dialog" aria-label="AI Dylan chat">
+    <div className={inline ? 'pa-panel pa-inline' : 'pa-panel'} role={inline ? 'region' : 'dialog'} aria-label="AI Dylan chat">
       <div className="pa-head">
         <div>
           <div className="ttl">
@@ -174,9 +176,11 @@ export default function PitchAgent() {
           </div>
           <div className="disc">An AI assistant trained on Dylan's public work — not Dylan himself.</div>
         </div>
-        <button className="pa-x" onClick={() => setOpen(false)} aria-label="Close chat">
-          ×
-        </button>
+        {!inline && (
+          <button className="pa-x" onClick={() => setOpen(false)} aria-label="Close chat">
+            ×
+          </button>
+        )}
       </div>
 
       {lock ? (

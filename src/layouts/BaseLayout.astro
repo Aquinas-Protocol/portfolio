@@ -43,6 +43,6 @@ const ogUrl = Astro.site ? new URL(withBase(ogImage), Astro.site).href : withBas
     <main>
       <slot />
     </main>
-    <PitchAgent client:idle />
+    {activeRoute !== 'contact' && <PitchAgent client:idle />}
   </body>
 </html>

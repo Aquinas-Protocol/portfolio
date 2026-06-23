@@ -24,12 +24,6 @@
     "href": "https://calendly.com/machina-infastructure/30min", "live": true
   },
   {
-    "icon": "⌘", "iconClass": "pk", "name": "Discord", "handle": "@aquinas · DMs open",
-    "best": "Best for <b>technical chat, agent infra talk, casual back-and-forth</b>.",
-    "badge": "CASUAL", "badgeClass": "pur", "rt": "RT · 1-3d", "action": "COMING SOON",
-    "href": null, "live": false, "comingSoon": true
-  },
-  {
     "icon": "↧", "iconClass": "cy", "name": "Resume · PDF", "handle": "/resume.pdf · 2 pages",
     "best": "Best for <b>recruiters who just need the document</b>. Master + tailored on request.",
     "badge": "DOWNLOAD", "badgeClass": "cy", "rt": "UPDATED · 2026.06", "action": "DOWNLOAD →",
