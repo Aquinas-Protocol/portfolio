@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FrequencyTile from '../components/FrequencyTile.astro';
+import PitchAgent from '../components/islands/PitchAgent.tsx';
 import { profile, channels } from '../lib/content';
 
 const a = profile.availability;
@@ -8,7 +9,7 @@ const cm = profile.contactMeta;
 ---
 <BaseLayout
   title="Contact — Dylan Palumbo"
-  description="Hailing frequencies open. Email, LinkedIn, GitHub, and resume — pick the channel that matches your intent. Open to senior IC roles in AI infra, platform, and SRE."
+  description="Talk to AI Dylan, an assistant trained on my public work — or reach me by email, LinkedIn, GitHub, calendar, or resume. Open to senior IC roles in AI infra, platform, and SRE."
   activeRoute="contact"
 >
   <div class="wrap" style="padding-top:36px;padding-bottom:80px">
@@ -24,6 +25,23 @@ const cm = profile.contactMeta;
         <span set:html={`BEST FIRST CONTACT · <b>${cm.bestFirst}</b>`}></span>
       </div>
     </div>
+
+    <section class="agentFeature">
+      <div class="afCopy">
+        <div class="stampLine">// TALK TO THE SYSTEM</div>
+        <h2 class="afTitle">Ask <span class="grad">AI&nbsp;Dylan</span></h2>
+        <p class="afLede">An assistant trained on my public work. Ask it anything, or use it for a quick read on:</p>
+        <ul class="afList">
+          <li><b>What I've built</b>, and how it actually works</li>
+          <li><b>Whether I'm a fit</b> for a given role</li>
+          <li><b>Availability</b> and how to reach me</li>
+        </ul>
+        <a class="afProof" href="https://github.com/Aquinas-Protocol/portfolio">See how this chat is built · github.com/Aquinas-Protocol/portfolio →</a>
+      </div>
+      <div class="afChat">
+        <PitchAgent variant="inline" client:visible />
+      </div>
+    </section>
 
     <div class="freqGrid">
       {channels.map((ch) => <FrequencyTile ch={ch} />)}
