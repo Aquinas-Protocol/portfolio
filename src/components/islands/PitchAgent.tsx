@@ -216,7 +216,12 @@ export default function PitchAgent({ variant = 'floating' }: { variant?: 'floati
 
           {leadOpen && (
             <form className="pa-lead" onSubmit={submitLead}>
-              <div className="lh">Reach Dylan</div>
+              <div className="lh">
+                <span>Reach Dylan</span>
+                <button type="button" className="pa-lead-x" onClick={() => setLeadOpen(false)} aria-label="Close contact form">
+                  ×
+                </button>
+              </div>
               <div className="row">
                 <input placeholder="Name" value={lead.name} onChange={(e) => setLead({ ...lead, name: e.target.value })} />
                 <input placeholder="Email" type="email" value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })} />
