@@ -18,10 +18,11 @@ Georgetown, TX (AZ relocation in motion) · [palumbo.d555@gmail.com](mailto:palu
 
 **Domo / discord-ops — production multi-agent council** ([repo](https://github.com/Aquinas-Protocol/domo) · [case study](https://dylan-palumbo.com/systems/discord-ops/))
 
-- Python 3.12 + Claude Agent SDK + FastAPI + SQLite; 6 specialist agents, each with its own persona, model, and MCP tool allowlist; per-thread sub-agents; 1,069-test suite; 99.94% uptime over 30 days on self-hosted Windows infrastructure.
+- Python 3.12 + Claude Agent SDK + FastAPI + SQLite; 6 specialist agents, each with its own persona, model, and MCP tool allowlist; per-thread sub-agents; 1,362-test suite; 99.94% uptime over 30 days on self-hosted Windows infrastructure.
 - Two-service privilege separation: unprivileged bot requests approved Windows admin operations from a LocalSystem broker via UUID-only named-pipe payloads, gated by human Approve/Deny.
-- Multi-model resilience: GPT-5.5 specialist over a sandboxed Codex CLI bridge with automatic fallback to Claude; a separated GPT-5 evaluator grades nightly output so the generator never grades its own work.
 - Safety as architecture: PreToolUse policy hook denies secret reads and protected writes even in autonomous mode; single-user auth gate at message receipt; schema-versioned SQLite with pre-migration backups.
+- Zero-regression real-time migration to SSE push (bounded per-client mailboxes, drop-oldest + resync) behind a Playwright endpoint-parity golden contract: 6/6 parity, 93 backend tests green, zero functional loss.
+- Read-only knowledge-vault MCP endpoint (Streamable-HTTP, bearer-gated) hardened by a 15-agent adversarial review: 12 confirmed findings fixed pre-commit; suite green at 1,362.
 
 **email-triage-ts — NestJS + TypeScript + DynamoDB pipeline with eval-gated LLM scorer** ([repo](https://github.com/Aquinas-Protocol/email-triage-ts))
 

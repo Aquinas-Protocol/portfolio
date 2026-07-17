@@ -41,11 +41,11 @@
     {
       "file": "project-discord-ops.md",
       "topic": "projects",
-      "doc_version": 1,
+      "doc_version": 2,
       "approved": true,
-      "approved_at": "2026-06-22T21:23:01.576Z",
+      "approved_at": "2026-07-17T03:37:06.619Z",
       "approved_by": "Dylan Palumbo",
-      "content_sha256": "3635408845447445947a248de2d97bf2a4072a19960309fde3d9529f1f1b3c26"
+      "content_sha256": "36e20d717781bacfdeba530a3b8e701de1f2e079e328e5237f5ad9789055d330"
     },
     {
       "file": "project-domo.md",
@@ -59,11 +59,11 @@
     {
       "file": "project-second-brain.md",
       "topic": "projects",
-      "doc_version": 1,
+      "doc_version": 2,
       "approved": true,
-      "approved_at": "2026-06-22T21:23:01.580Z",
+      "approved_at": "2026-07-17T03:37:06.622Z",
       "approved_by": "Dylan Palumbo",
-      "content_sha256": "b77946094f8e30133bae6e07ac782e7c9796015d350a7eaf51483413b9d077a3"
+      "content_sha256": "fb7f034433c1723aee2d0d1b80c8029e508e3b0415e59df5319091dda5690575"
     },
     {
       "file": "project-email-triage-ts.md",

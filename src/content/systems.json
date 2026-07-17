@@ -4,7 +4,7 @@
     "badge": { "label": "LIVE", "cls": "live" },
     "desc": "6-agent Claude council fronted by Discord. Multi-model fallback via a sandboxed Codex bridge, admin elevation broker, cron scheduler, voice notes, vault write-guard.",
     "grid": {
-      "telHead": "// 30D UPTIME", "telRight": "99.94%", "val": "1,069", "unit": "tests passing",
+      "telHead": "// 30D UPTIME", "telRight": "99.94%", "val": "1,362", "unit": "tests passing",
       "spark": { "stroke": "#5ee892", "points": "0,8 8,9 16,7 24,10 32,7 40,8 48,6 56,9 64,7 72,8 80,6 88,7 100,5" },
       "stackMini": ["Python", "FastAPI", "Agent SDK", "MCP"],
       "footLeft": "● ONLINE · 6 / 6 AGENTS", "footStatusDot": true
@@ -22,13 +22,13 @@
       "kpis": [
         { "k": "Uptime · 30d", "v": "99.94%", "vCls": "g", "t": "30d window" },
         { "k": "Agent Tasks · 30d", "v": "399", "vCls": "p", "t": "task ledger" },
-        { "k": "Tests Passing", "v": "1,069 / 1,069", "vCls": "g", "t": "CI green" },
+        { "k": "Tests Passing", "v": "1,362 / 1,362", "vCls": "g", "t": "CI green" },
         { "k": "Cron Jobs", "v": "8", "vCls": "c", "t": "7 enabled" }
       ],
       "paragraphs": [
         "discord-ops is the personal-instance production system that <b>Domo</b> graduated out of. An operator agent coordinates a small council via Discord DMs and a dedicated channel, spawns per-thread sub-agents for isolated work, and exposes a local Mission Control dashboard for status + intervention. It runs on the same second-brain vault as shared memory.",
         "The interesting parts aren't the agents themselves — those are off-the-shelf Claude. The interesting parts are the <b>seam, the scheduler, and the broker</b>: a per-feature wire pattern that scopes tools per-agent and self-disables when config is absent; a cron runner that's safe to retry; and a Windows admin-elevation broker that passes only an approved request token over a local channel (never the command text itself).",
-        "Recent additions push past a single vendor: a <b>GPT-5.5 specialist over a sandboxed Codex CLI bridge</b> backs the council — scheduled pipelines run server-side on it and fall back to the Claude agent automatically — and a separated <b>GPT-5 evaluator</b> grades the nightly research brief, so the generator never grades its own work. Mornings, the 7AM scan ends with an <b>ElevenLabs voice note</b>: a ~60-second spoken summary played live in a voice channel and attached as an mp3."
+        "Recent additions push past a single vendor: a <b>GPT-5.5 specialist over a sandboxed Codex CLI bridge</b> backs the council — scheduled pipelines run server-side on it and fall back to the Claude agent automatically. Mornings, the 7AM scan ends with an <b>ElevenLabs voice note</b>: a ~60-second spoken summary played live in a voice channel and attached as an mp3."
       ],
       "featureList": [
         { "name": "Multi-agent council", "desc": "6 agents, each its own Discord bot account, persona, model, tool allowlist." },
@@ -38,9 +38,11 @@
         { "name": "Vault write-guard", "desc": "PreToolUse hook blocks writes to protected paths and reads of secrets." },
         { "name": "Mission Control UI", "desc": "PIN-gated dashboard views, vanilla JS, served by FastAPI static." },
         { "name": "Multi-model resilience", "desc": "GPT-5.5 specialist via a sandboxed Codex bridge; server-side pipelines fall back to the Claude agent automatically." },
-        { "name": "Generator/evaluator split", "desc": "A separated GPT-5 evaluator scores the nightly brief against a weighted rubric — pass or revise." },
         { "name": "Voice notes", "desc": "ElevenLabs TTS on the 7AM scan: spoken summary in-channel plus mp3 artifact, behind a per-day character budget." },
-        { "name": "Shared-channel routing", "desc": "First multi-agent channel: two specialists co-resident, @-mention dispatch, per-(channel, agent) sessions." }
+        { "name": "Shared-channel routing", "desc": "First multi-agent channel: two specialists co-resident, @-mention dispatch, per-(channel, agent) sessions." },
+        { "name": "Real-time Mission Control", "desc": "SSE push from an in-process event bus; bounded per-subscriber mailboxes, drop-oldest + resync, no polling." },
+        { "name": "Retro-as-PM loop", "desc": "Weekly fleet retro mines telemetry and proposes ≤2 changes as Approve/Deny embeds; approved items tracked to shipped." },
+        { "name": "Read-only vault MCP endpoint", "desc": "Streamable-HTTP mount, bearer-gated, three read-only tools; hardened by a 15-agent adversarial review before commit." }
       ],
       "stackMatrix": [
         { "l": "// LANG", "n": "Python 3.12" }, { "l": "// FRAMEWORK", "n": "FastAPI" },
@@ -54,9 +56,9 @@
         { "name": "fastapi", "ver": "0.115" }, { "name": "aiosqlite", "ver": "0.20" }, { "name": "pydantic", "ver": "2.9" }
       ],
       "commits": [
-        { "h": "scheduler", "msg": "idempotent retry on transient failure", "t": "recent" },
-        { "h": "broker", "msg": "tighten elevation channel to LocalSystem only", "t": "recent" },
-        { "h": "dashboard", "msg": "cron view live-toggles", "t": "recent" }
+        { "h": "dashboard", "msg": "SSE push + redesign across all 13 views, zero loss on critical flows", "t": "recent" },
+        { "h": "mcp-vault", "msg": "read-only vault endpoint, 12 adversarial-review findings fixed pre-commit", "t": "recent" },
+        { "h": "retro", "msg": "weekly fleet retro proposes changes as Approve/Deny cards", "t": "recent" }
       ],
       "related": [
         { "name": "Domo", "meta": "OSS · SYS-002", "slug": "domo" },
