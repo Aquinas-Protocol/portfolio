@@ -41,11 +41,11 @@
     {
       "file": "project-discord-ops.md",
       "topic": "projects",
-      "doc_version": 2,
+      "doc_version": 3,
       "approved": true,
-      "approved_at": "2026-07-17T03:37:06.619Z",
+      "approved_at": "2026-08-29T16:38:48.247Z",
       "approved_by": "Dylan Palumbo",
-      "content_sha256": "36e20d717781bacfdeba530a3b8e701de1f2e079e328e5237f5ad9789055d330"
+      "content_sha256": "e84d09794b7b3bc5b52dc642052d82c5fc4c6744965a2cc9e8cfbdfa736dff8e"
     },
     {
       "file": "project-domo.md",
@@ -59,11 +59,20 @@
     {
       "file": "project-second-brain.md",
       "topic": "projects",
-      "doc_version": 2,
+      "doc_version": 3,
       "approved": true,
-      "approved_at": "2026-07-17T03:37:06.622Z",
+      "approved_at": "2026-08-29T16:38:48.250Z",
       "approved_by": "Dylan Palumbo",
-      "content_sha256": "fb7f034433c1723aee2d0d1b80c8029e508e3b0415e59df5319091dda5690575"
+      "content_sha256": "87a9b05cf8848752b547aa10847c020fcffecd07f7b287e87a42228c9e8f0a93"
+    },
+    {
+      "file": "project-n8n-hris-provisioning.md",
+      "topic": "projects",
+      "doc_version": 1,
+      "approved": true,
+      "approved_at": "2026-08-29T16:38:48.253Z",
+      "approved_by": "Dylan Palumbo",
+      "content_sha256": "ceb857d325427dcb85476e63ec9247a54796ff85a6c8983011cc1ae2dfc33793"
     },
     {
       "file": "project-email-triage-ts.md",

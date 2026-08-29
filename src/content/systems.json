@@ -4,7 +4,7 @@
     "badge": { "label": "LIVE", "cls": "live" },
     "desc": "6-agent Claude council fronted by Discord. Multi-model fallback via a sandboxed Codex bridge, admin elevation broker, cron scheduler, voice notes, vault write-guard.",
     "grid": {
-      "telHead": "// 30D UPTIME", "telRight": "99.94%", "val": "1,362", "unit": "tests passing",
+      "telHead": "// 30D UPTIME", "telRight": "99.94%", "val": "1,501", "unit": "tests passing",
       "spark": { "stroke": "#5ee892", "points": "0,8 8,9 16,7 24,10 32,7 40,8 48,6 56,9 64,7 72,8 80,6 88,7 100,5" },
       "stackMini": ["Python", "FastAPI", "Agent SDK", "MCP"],
       "footLeft": "● ONLINE · 6 / 6 AGENTS", "footStatusDot": true
@@ -22,7 +22,7 @@
       "kpis": [
         { "k": "Uptime · 30d", "v": "99.94%", "vCls": "g", "t": "30d window" },
         { "k": "Agent Tasks · 30d", "v": "399", "vCls": "p", "t": "task ledger" },
-        { "k": "Tests Passing", "v": "1,362 / 1,362", "vCls": "g", "t": "CI green" },
+        { "k": "Tests Passing", "v": "1,501", "vCls": "g", "t": "suite green" },
         { "k": "Cron Jobs", "v": "8", "vCls": "c", "t": "7 enabled" }
       ],
       "paragraphs": [
@@ -42,7 +42,9 @@
         { "name": "Shared-channel routing", "desc": "First multi-agent channel: two specialists co-resident, @-mention dispatch, per-(channel, agent) sessions." },
         { "name": "Real-time Mission Control", "desc": "SSE push from an in-process event bus; bounded per-subscriber mailboxes, drop-oldest + resync, no polling." },
         { "name": "Retro-as-PM loop", "desc": "Weekly fleet retro mines telemetry and proposes ≤2 changes as Approve/Deny embeds; approved items tracked to shipped." },
-        { "name": "Read-only vault MCP endpoint", "desc": "Streamable-HTTP mount, bearer-gated, three read-only tools; hardened by a 15-agent adversarial review before commit." }
+        { "name": "Read-only vault MCP endpoint", "desc": "Streamable-HTTP mount, bearer-gated, three read-only tools; hardened by a 15-agent adversarial review before commit." },
+        { "name": "Human-gated criteria refinement", "desc": "Operator flags mis-scored roles; a weekly review job proposes criteria edits from the week's flags, applied only on explicit approval." },
+        { "name": "Fallback health gate + breaker", "desc": "Pre-run probe of the bridge CLI, a 3-error circuit breaker that keeps partial results, and an alert whenever the fallback engages." }
       ],
       "stackMatrix": [
         { "l": "// LANG", "n": "Python 3.12" }, { "l": "// FRAMEWORK", "n": "FastAPI" },
@@ -56,9 +58,9 @@
         { "name": "fastapi", "ver": "0.115" }, { "name": "aiosqlite", "ver": "0.20" }, { "name": "pydantic", "ver": "2.9" }
       ],
       "commits": [
+        { "h": "flag-loop", "msg": "human-gated criteria-refinement loop for the career agent", "t": "recent" },
         { "h": "dashboard", "msg": "SSE push + redesign across all 13 views, zero loss on critical flows", "t": "recent" },
-        { "h": "mcp-vault", "msg": "read-only vault endpoint, 12 adversarial-review findings fixed pre-commit", "t": "recent" },
-        { "h": "retro", "msg": "weekly fleet retro proposes changes as Approve/Deny cards", "t": "recent" }
+        { "h": "mcp-vault", "msg": "read-only vault endpoint, 12 adversarial-review findings fixed pre-commit", "t": "recent" }
       ],
       "related": [
         { "name": "Domo", "meta": "OSS · SYS-002", "slug": "domo" },
@@ -591,6 +593,55 @@
           "link": { "href": "/writing/eval-first-hybrid-retrieval/", "label": "READ THE WRITE-UP →" }
         }
       }
+    }
+  },
+  {
+    "id": "SYS-010", "slug": "n8n-hris-provisioning", "name": "n8n-hris-provisioning", "statusLabel": "OSS",
+    "badge": { "label": "OSS · MIT", "cls": "pur" },
+    "desc": "New-hire provisioning pipeline in n8n: HRIS webhook → Slack approval gate → idempotent Google Workspace (mocked Admin SDK), Slack, and Notion legs, with an error lane. Compose + CI, importable by a stranger.",
+    "grid": {
+      "telHead": "// HAPPY PATH", "telRight": "54.9s", "val": "14", "unit": "nodes · HITL gate",
+      "spark": { "stroke": "#9d7cff", "points": "0,28 14,25 28,22 42,18 56,14 70,11 84,7 100,4" },
+      "stackMini": ["n8n", "Docker", "Slack", "Notion"],
+      "footLeft": "SHIPPED 2026.08.24", "footStatusDot": false
+    },
+    "detail": {
+      "stamp": "// SYS-010 · OSS · MIT",
+      "sub": "A human-gated IT provisioning workflow in n8n 2.35.7: a mock HRIS webhook (header-auth ingress gate) posts a Slack approve-or-decline request and stops; after approval, idempotent legs create the Google Workspace account (against a bundled mock of the Admin SDK), invite the hire to Slack, and write the Notion People row. Any failure routes to an error workflow that alerts #it-alerts.",
+      "metaBadges": [
+        { "label": "OSS · MIT", "cls": "pur" },
+        { "label": "PUBLIC", "cls": "live" },
+        { "label": "N8N 2.35.7", "cls": "cy" }
+      ],
+      "repoUrl": "https://github.com/Aquinas-Protocol/n8n-hris-provisioning", "repoLabel": "VIEW REPO ↗", "isPrivate": false,
+      "kpis": [
+        { "k": "Workflow", "v": "14 nodes", "vCls": "c", "t": "JSON in git" },
+        { "k": "Live Executions", "v": "8", "vCls": "p", "t": "incl. error demo" },
+        { "k": "Approval Window", "v": "1h", "vCls": "g", "t": "no click = declined" },
+        { "k": "Outage Survived", "v": "16h", "vCls": "g", "t": "wait-and-resume" }
+      ],
+      "paragraphs": [
+        "n8n-hris-provisioning applies the same sensitive-write discipline as the agent stack (nothing is created before a human approves) on a no-code platform. The webhook only accepts requests carrying a shared header token; a Code node validates the payload and derives the work email plus the department's Google group and Slack channel; then Slack <b>Send and Wait</b> blocks the execution until Approve, Decline, or a one-hour timeout.",
+        "Every provisioning leg is <b>idempotent</b>: the Google user is looked up first and created only on a miss, a 409 on the group add means already-a-member, and the Slack invite tolerates already-in-channel — so re-firing the same event is safe and the summary says what was skipped. The durability is real: an unplanned 16-hour host outage hit while an approval was waiting, and the execution resumed correctly on boot.",
+        "The honest failure mode shipped in the README: n8n 2.x silently skips <b>unpublished</b> error workflows (1.x fired them without activation), so the first real failure never alerted. The import script now publishes both workflows, and the error demo proves the lane end to end."
+      ],
+      "featureList": [
+        { "name": "Header-auth ingress gate", "desc": "Wrong token = 403 with no execution created; rejected requests never reach the approval step." },
+        { "name": "Human approval gate", "desc": "Slack Send and Wait with Approve/Decline buttons; one hour without a click counts as declined." },
+        { "name": "Idempotent provisioning legs", "desc": "GET-first Google create, 409-tolerant group add, invite tolerant of already-in-channel; safe re-fire." },
+        { "name": "Error lane", "desc": "Any throw routes to a second published workflow that names the failed node in #it-alerts." }
+      ],
+      "stackMatrix": [
+        { "l": "// PLATFORM", "n": "n8n 2.35.7" }, { "l": "// RUNTIME", "n": "Docker Compose" },
+        { "l": "// APPROVAL", "n": "Slack Send & Wait" }, { "l": "// DIRECTORY", "n": "Admin SDK (mock)" },
+        { "l": "// RECORDS", "n": "Notion API" }, { "l": "// CI", "n": "GH Actions · gitleaks" }
+      ],
+      "deps": [],
+      "commits": [],
+      "related": [
+        { "name": "email-triage-ts", "meta": "OSS · SYS-007", "slug": "email-triage-ts" },
+        { "name": "discord-ops", "meta": "LIVE · SYS-001", "slug": "discord-ops" }
+      ]
     }
   }
 ]

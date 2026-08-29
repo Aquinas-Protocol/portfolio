@@ -18,11 +18,11 @@ Georgetown, TX (AZ relocation in motion) · [palumbo.d555@gmail.com](mailto:palu
 
 **Domo / discord-ops — production multi-agent council** ([repo](https://github.com/Aquinas-Protocol/domo) · [case study](https://dylan-palumbo.com/systems/discord-ops/))
 
-- Python 3.12 + Claude Agent SDK + FastAPI + SQLite; 6 specialist agents, each with its own persona, model, and MCP tool allowlist; per-thread sub-agents; 1,362-test suite; 99.94% uptime over 30 days on self-hosted Windows infrastructure.
+- Python 3.12 + Claude Agent SDK + FastAPI + SQLite; 6 specialist agents, each with its own persona, model, and MCP tool allowlist; per-thread sub-agents; 1,501-test suite; 99.94% uptime over 30 days on self-hosted Windows infrastructure.
 - Two-service privilege separation: unprivileged bot requests approved Windows admin operations from a LocalSystem broker via UUID-only named-pipe payloads, gated by human Approve/Deny.
 - Safety as architecture: PreToolUse policy hook denies secret reads and protected writes even in autonomous mode; single-user auth gate at message receipt; schema-versioned SQLite with pre-migration backups.
 - Zero-regression real-time migration to SSE push (bounded per-client mailboxes, drop-oldest + resync) behind a Playwright endpoint-parity golden contract: 6/6 parity, 93 backend tests green, zero functional loss.
-- Read-only knowledge-vault MCP endpoint (Streamable-HTTP, bearer-gated) hardened by a 15-agent adversarial review: 12 confirmed findings fixed pre-commit; suite green at 1,362.
+- Read-only knowledge-vault MCP endpoint (Streamable-HTTP, bearer-gated) hardened by a 15-agent adversarial review: 12 confirmed findings fixed pre-commit.
 
 **email-triage-ts — NestJS + TypeScript + DynamoDB pipeline with eval-gated LLM scorer** ([repo](https://github.com/Aquinas-Protocol/email-triage-ts))
 
@@ -37,6 +37,7 @@ Georgetown, TX (AZ relocation in motion) · [palumbo.d555@gmail.com](mailto:palu
 
 **Selected additional systems**
 
+- **n8n-hris-provisioning** — human-gated new-hire provisioning in n8n: HRIS webhook, Slack approve/decline gate, idempotent Google Workspace + Slack + Notion legs, error lane; survived a 16-hour outage mid-approval ([repo](https://github.com/Aquinas-Protocol/n8n-hris-provisioning)).
 - **voice-bridge** — MacBook-to-Windows voice dictation over RDP: Quartz CGEventTap hotkey suppression, clipboard + SendInput paste, heartbeat-armed down-alerts; hardened via a published Win32 heap-corruption RCA.
 - **second-brain** — Karpathy-pattern knowledge vault (read-only raw/ vs curated wiki/) serving as shared agent memory, maintained by custom Claude Code skills.
 - **Stadium** — Expo/React Native + TypeScript workout PWA, installable offline, in daily use ([live](https://aquinas-protocol.github.io/workout-app)).
@@ -67,7 +68,7 @@ Georgetown, TX (AZ relocation in motion) · [palumbo.d555@gmail.com](mailto:palu
 ## Skills
 
 - **Languages:** Python (primary, 10+ yr), TypeScript, PowerShell, bash, SQL
-- **AI / agentic:** Claude Agent SDK, MCP server design, multi-agent orchestration, HITL approval gates, structured output (strict tool use), LLM eval harnesses (datasets, scorers, LLM-as-judge, regression CI), prompt versioning, provider abstraction
+- **AI / agentic:** Claude Agent SDK, MCP server design, multi-agent orchestration, HITL approval gates, structured output (strict tool use), LLM eval harnesses (datasets, scorers, LLM-as-judge, regression CI), prompt versioning
 - **Backend:** NestJS, FastAPI, asyncio, Pydantic, hexagonal architecture, Server-Sent Events
 - **Storage:** SQLite (WAL, versioned migrations), DynamoDB (single-table, sparse GSI, conditional writes), PostgreSQL
 - **Ops & infra:** Windows service operations (NSSM, Task Scheduler, LocalSystem privilege separation), Tailscale, OAuth flows, GitHub Actions, Jest, pytest
@@ -77,5 +78,5 @@ Georgetown, TX (AZ relocation in motion) · [palumbo.d555@gmail.com](mailto:palu
 
 - **Southern New Hampshire University** — A.S. Computer Science, in progress · GPA 4.0
 - **Truckee Meadows Community College** — coursework: C++, Java, Linux, software development · GPA 3.48
-- **Anthropic Academy:** AI Fluency (10/10) · Claude 101 · Claude Code 101 · Claude Code in Action · Intro to MCP · MCP Advanced Topics (2026)
+- **Anthropic Academy** (2026): AI Fluency (10/10) · Claude 101 · Claude Code 101 + in Action · MCP Intro + Advanced
 - **AWS** (in progress): Certified Solutions Architect · Developer · SysOps Administrator
